@@ -28,7 +28,10 @@ class Model: ModelInterface {
         thisNumber = number.toInt()
         if(checkNumber&&checkZero) {
             if (action == "") {
-                first += number
+                if(first=="0")
+                    first=number
+                else
+                    first += number
             } else {
                 second += number
             }
@@ -93,7 +96,8 @@ class Model: ModelInterface {
         check = true
         delete = true
         first = "0"
-        second = "0"
+        second = ""
+        action = ""
     }
 
 
