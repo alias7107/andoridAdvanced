@@ -69,8 +69,8 @@ class Model: ModelInterface {
 
             if (action == "") {
                 delText = first
-                answear = delText
                 delText = delText.substring(0, delText.length - 1)
+                answear = delText
                 first = delText
             } else if (action.isNotEmpty() && checkAction) {
                 delText = second
