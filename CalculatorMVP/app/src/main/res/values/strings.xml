@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CalculatorMVP</string>
+    <string name="nine">9</string>
+</resources>
