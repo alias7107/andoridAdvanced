@@ -48,30 +48,21 @@ class MovieListFragment : Fragment(){
 
         })
 
-//        viewDataBinding.viewmodel.toastMessage.observe(viewLifecycleOwner, Observer {
-//            activity?.longToast(it)
-//        })
+
     }
 
     private fun setupAdapter() {
-        Log.d("adapter","njene")
         val viewModel = viewDataBinding.viewmodel
-
         if (viewModel != null) {
-
             adapter = MovieListAdapter(viewDataBinding.viewmodel!!)
-
             val layoutManager = LinearLayoutManager(activity)
-
             movie_list_rv.layoutManager = layoutManager
-
             movie_list_rv.addItemDecoration(
                 DividerItemDecoration(
                     activity,
                     layoutManager.orientation
                 )
             )
-
             movie_list_rv.adapter = adapter
         }
     }
