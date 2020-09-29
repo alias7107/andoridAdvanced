@@ -96,7 +96,7 @@ class Model: ModelInterface {
         check = true
         delete = true
         first = "0"
-        second = ""
+        second = "0"
         action = ""
     }
 
