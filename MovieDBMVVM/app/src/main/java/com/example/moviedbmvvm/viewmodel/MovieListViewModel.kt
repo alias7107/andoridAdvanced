@@ -7,11 +7,12 @@ import com.example.moviedbmvvm.data.model.MovieResponse
 
 import com.example.moviedbmvvm.data.repository.MovieListRepository
 
-class MovieListViewModel: BaseViewModel()  {
+class MovieListViewModel(val movieListRepository: MovieListRepository): BaseViewModel()  {
     val movieListLive = MutableLiveData<List<Item>>()
+
     fun fetchMovieList() {
         dataLoading.value = true
-        MovieListRepository.getInstance().getMovieList { isSuccess, response ->
+        movieListRepository.getMovieList { isSuccess, response ->
             dataLoading.value = false
             if (isSuccess) {
                 movieListLive.value = response?.results

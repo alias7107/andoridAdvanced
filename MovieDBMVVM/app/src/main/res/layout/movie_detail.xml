@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.Activities.MainActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="itemDetail"
+            type="com.example.moviedbmvvm.data.model.Item" />
+    </data>
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +32,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:context=".view.Activities.MainActivity">
+
+             >
 
             <ImageView
                 android:id="@+id/ivBanner"
@@ -64,13 +77,14 @@
                 android:layout_marginTop="8dp"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
+                android:text="@{itemDetail.release_date.substring(0,4)}"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/ivFull"
                 app:layout_constraintTop_toTopOf="@+id/tvAdditional"
                 tools:text="2020" />
 
             <TextView
-                android:id="@+id/tvMovieTitle"
+                android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -78,6 +92,7 @@
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
+                android:text="@{itemDetail.title}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivFull"
@@ -152,6 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    android:text="@{itemDetail.vote_average}"
                     android:textColor="@android:color/black"
                     app:layout_constraintEnd_toEndOf="@+id/ivLogo"
                     app:layout_constraintStart_toStartOf="@+id/ivLogo"
@@ -177,6 +193,7 @@
                     android:layout_marginTop="8dp"
                     android:textColor="@android:color/black"
                     android:textSize="16dp"
+                    android:text="@{itemDetail.overview}"
                     app:layout_constraintEnd_toEndOf="@+id/textView2"
                     app:layout_constraintStart_toStartOf="@+id/textView2"
                     app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -200,6 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:textSize="16dp"
+                    android:text="@{itemDetail.release_date}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv1"
                     app:layout_constraintStart_toEndOf="@+id/tv1"
                     app:layout_constraintTop_toTopOf="@+id/tv1"
@@ -210,3 +228,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+</layout>

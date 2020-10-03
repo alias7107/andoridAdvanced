@@ -14,29 +14,28 @@ import com.example.moviedbmvvm.viewmodel.MovieListViewModel
 import kotlinx.android.synthetic.main.movie_list_fragment.*
 import androidx.lifecycle.Observer
 import com.example.moviedbmvvm.view.adapter.MovieListAdapter
+import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class MovieListFragment : Fragment(){
     private lateinit var viewDataBinding: MovieListFragmentBinding
     private lateinit var adapter: MovieListAdapter
+    private val movieListViewModel:MovieListViewModel by viewModel()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewDataBinding = MovieListFragmentBinding.inflate(inflater, container, false).apply {
-            viewmodel =
-                ViewModelProviders.of(this@MovieListFragment).get(MovieListViewModel::class.java)
             setLifecycleOwner(viewLifecycleOwner)
         }
+        viewDataBinding.viewmodel = movieListViewModel
         return viewDataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding.viewmodel?.fetchMovieList()
-        view.setOnClickListener {
-
-        }
         setupAdapter()
         setObservers()
     }
@@ -48,13 +47,12 @@ class MovieListFragment : Fragment(){
 
         })
 
-
     }
 
     private fun setupAdapter() {
         val viewModel = viewDataBinding.viewmodel
         if (viewModel != null) {
-            adapter = MovieListAdapter(viewDataBinding.viewmodel!!)
+            adapter = MovieListAdapter(viewDataBinding.viewmodel!!, activity)
             val layoutManager = LinearLayoutManager(activity)
             movie_list_rv.layoutManager = layoutManager
             movie_list_rv.addItemDecoration(
