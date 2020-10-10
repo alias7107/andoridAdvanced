@@ -41,7 +41,7 @@ class MovieListFragment : Fragment(){
     }
 
     private fun setObservers() {
-        viewDataBinding.viewmodel?.movieListLive?.observe(viewLifecycleOwner, Observer {
+        viewDataBinding.viewmodel?.fetchMovieList()?.observe(viewLifecycleOwner, Observer {
             adapter.updateMovieList(it)
 
 
