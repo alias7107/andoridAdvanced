@@ -1,1 +1,1 @@
-Project is Quotesapp, not Newsapp
+Project is Quotesapp
