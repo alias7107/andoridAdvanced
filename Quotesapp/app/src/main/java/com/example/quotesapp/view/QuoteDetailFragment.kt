@@ -12,12 +12,12 @@ import androidx.fragment.app.Fragment
 import com.example.quotesapp.R
 import com.example.quotesapp.data.model.Item
 import com.squareup.picasso.Picasso
-import com.example.quotesapp.databinding.DetailActivityBinding
+import com.example.quotesapp.databinding.DetailActivityBindingImpl
 import com.example.quotesapp.BR
 
 
 class QuoteDetailFragment constructor(private val itemDetail: Item ): Fragment() {
-    private lateinit var viewDataBinding: DetailActivityBinding
+    private lateinit var viewDataBinding: DetailActivityBindingImpl
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

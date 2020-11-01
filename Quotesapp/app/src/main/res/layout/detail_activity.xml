@@ -45,6 +45,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="15dp"
         tools:text="dsdkmsifsndj"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{itemDetail.body}"
@@ -59,7 +60,7 @@
     <TextView
         android:id="@+id/author"
         android:fontFamily="@font/kaushan_script"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="80dp"
 android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
