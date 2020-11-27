@@ -22,14 +22,14 @@ class QuotesListViewHodler constructor(
         itemView.setOnClickListener{
 
             val fragment = QuoteDetailFragment(itemData)
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_nav_fragment, fragment)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_nav_fragment, fragment)?.addToBackStack(null)?.commit()
 
         }
 
-//
+
 //        itemView.setOnClickListener{
 //
-//            val fragment = MovieDetailFragment(itemData)
+//            val service = MovieDetailFragment(itemData)
 //            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_nav_fragment, fragment)?.commit()
 //
 //        }

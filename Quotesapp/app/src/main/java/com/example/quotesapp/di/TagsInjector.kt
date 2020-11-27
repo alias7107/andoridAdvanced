@@ -13,31 +13,25 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-
-val viewModeModule = module{
-    viewModel { QuotesListViewModel(get( ))
-
-    }
+val TagsViewModeModule = module{
+    viewModel { TagsListViewModel(get( )) }
 }
 
-val useCaseModule = module{
-    single { GetQuoteListUseCase(get<QuoteListDataStore>())
-
-    }
+val TagsUseCaseModule = module{
+    single { GetTagsListUseCase(get<TagsListDataStore>()) }
 }
 
-val repositoryModule = module{
-    single { QuoteListDataStore(get())
-        }
+val TagsRepositoryModule = module{
+    single { TagsListDataStore(get()) }
 }
 
-val networkModule = module {
+val TagsNetworkModule = module {
     single { ApiClient.create(okHttpClient = get()) }
     single { ApiClient.getOkHttpClient(authInterceptor = get()) }
     single { ApiClient.getAuthInterceptor(sharedPreferences = get())}
 }
 
-val sharedPrefModule = module {
+val TagsSharedPrefModule = module {
     single {
         androidApplication().getSharedPreferences("default", Context.MODE_PRIVATE)
     }

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.main_nav_fragment, QuotesListFragment()).commit()
+        fragmentManager.beginTransaction().replace(R.id.main_nav_fragment, TagsListFragment()).addToBackStack(null).commit()
 
     }
 }

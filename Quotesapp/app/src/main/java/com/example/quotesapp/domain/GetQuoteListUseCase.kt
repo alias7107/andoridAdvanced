@@ -5,7 +5,7 @@ import com.example.quotesapp.data.model.Item
 
 
 class GetQuoteListUseCase(val quoteListRepository: QuoteListRepository) {
-    fun getQuoteList(): LiveData<List<Item>>{
-        return quoteListRepository.loadData()
+    fun getQuoteList(selectedTag: String): LiveData<List<Item>>{
+        return quoteListRepository.loadData(selectedTag)
     }
 }

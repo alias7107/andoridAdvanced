@@ -5,7 +5,7 @@ import com.example.quotesapp.data.model.Item
 import com.example.quotesapp.domain.GetQuoteListUseCase
 
 class QuotesListViewModel(val getQuoteListUseCase: GetQuoteListUseCase): BaseViewModel() {
-    fun fetchQuotesList(): LiveData<List<Item>> {
-        return getQuoteListUseCase.getQuoteList()
+    fun fetchQuotesList(selectedTag: String): LiveData<List<Item>> {
+        return getQuoteListUseCase.getQuoteList(selectedTag)
     }
 }

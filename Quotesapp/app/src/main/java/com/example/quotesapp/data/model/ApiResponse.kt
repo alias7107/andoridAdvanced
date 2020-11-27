@@ -14,3 +14,14 @@ data class Item(
     var author: String,
     var body: String
 )
+
+data class TypeHeadResponse (
+    val tags: List<Tags>
+)
+
+data class Tags(
+    var id: Int,
+    var count: Int,
+    var permalink: String,
+    var name: String
+)

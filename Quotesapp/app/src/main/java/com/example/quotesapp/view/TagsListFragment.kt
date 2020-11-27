@@ -7,41 +7,43 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.android.viewmodel.ext.android.viewModel
 import com.example.quotesapp.databinding.QuotesListFragmentBinding
+import com.example.quotesapp.databinding.TagsListFragmentBinding
 import com.example.quotesapp.view.adapter.QuotesListAdapter
+import com.example.quotesapp.view.adapter.TagsListAdapter
 import com.example.quotesapp.viewModel.QuotesListViewModel
-import androidx.lifecycle.Observer
-import com.example.quotesapp.data.model.Item
-import com.example.quotesapp.data.model.Tags
+import com.example.quotesapp.viewModel.TagsListViewModel
 import kotlinx.android.synthetic.main.quotes_list_fragment.*
+import org.koin.android.viewmodel.ext.android.viewModel
+import androidx.lifecycle.Observer
+import kotlinx.android.synthetic.main.tags_list_fragment.*
 
-class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment(){
-    private lateinit var viewDataBinding: QuotesListFragmentBinding
-    private lateinit var adapter: QuotesListAdapter
-    private val QuotesListViewModel:QuotesListViewModel by viewModel()
+class TagsListFragment: Fragment(){
+    private lateinit var viewDataBinding: TagsListFragmentBinding
+    private lateinit var adapter: TagsListAdapter
+    private val TagsListViewModel: TagsListViewModel by viewModel()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewDataBinding = QuotesListFragmentBinding.inflate(inflater, container, false).apply {
+        viewDataBinding = TagsListFragmentBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(viewLifecycleOwner)
         }
-        viewDataBinding.viewModel = QuotesListViewModel
+        viewDataBinding.tagsViewModel = TagsListViewModel
         return viewDataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding.viewModel?.fetchQuotesList(selectedTag.name)
+        viewDataBinding.tagsViewModel?.fetchTagsList()
         setupAdapter()
         setObservers()
     }
 
     private fun setObservers() {
-        viewDataBinding.viewModel?.fetchQuotesList(selectedTag.name)?.observe(viewLifecycleOwner, Observer {
-            adapter.updateQuoteList(it)
+        viewDataBinding.tagsViewModel?.fetchTagsList()?.observe(viewLifecycleOwner, Observer {
+            adapter.updateTagsList(it)
 
 
         })
@@ -49,18 +51,18 @@ class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment()
     }
 
     private fun setupAdapter() {
-        val viewModel = viewDataBinding.viewModel
+        val viewModel = viewDataBinding.tagsViewModel
         if (viewModel != null) {
-            adapter = QuotesListAdapter(viewDataBinding.viewModel!!, activity)
+            adapter = TagsListAdapter(viewDataBinding.tagsViewModel!!, activity)
             val layoutManager = LinearLayoutManager(activity)
-            quotes_list_rv.layoutManager = layoutManager
-            quotes_list_rv.addItemDecoration(
+            tags_list_rv.layoutManager = layoutManager
+            tags_list_rv.addItemDecoration(
                 DividerItemDecoration(
                     activity,
                     layoutManager.orientation
                 )
             )
-            quotes_list_rv.adapter = adapter
+            tags_list_rv.adapter = adapter
         }
     }
 }

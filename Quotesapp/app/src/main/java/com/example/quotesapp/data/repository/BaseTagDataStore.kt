@@ -3,30 +3,26 @@ package com.example.quotesapp.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quotesapp.data.api.ApiService
-import com.example.quotesapp.data.model.Item
-import com.example.quotesapp.data.model.QuoteResponse
 import com.example.quotesapp.data.model.Tags
 import com.example.quotesapp.data.model.TypeHeadResponse
-
+import kotlinx.coroutines.*
 import retrofit2.HttpException
 import retrofit2.Response
-import kotlinx.coroutines.*
 import timber.log.Timber
 
-abstract class BaseDataStore(@PublishedApi internal val service: ApiService) {
+abstract class BaseTagDataStore(@PublishedApi internal val service: ApiService){
 
-    abstract fun loadData(selectedTag: String): LiveData<List<Item>>
+    abstract fun TagsData(): LiveData<List<Tags>>
 
-
-    inline fun fetchData(crossinline call: (ApiService) -> Deferred<Response<QuoteResponse>>): LiveData<List<Item>> {
-        val result = MutableLiveData<List<Item>>()
+    inline fun fetchTags(crossinline call: (ApiService) -> Deferred<Response<TypeHeadResponse>>): LiveData<List<Tags>> {
+        val result = MutableLiveData<List<Tags>>()
         CoroutineScope(Dispatchers.IO).launch {
             val request = call(service)
             withContext(Dispatchers.Main) {
                 try {
                     val response = request.await()
                     if (response.isSuccessful) {
-                        result.value = response.body()?.quotes
+                        result.value = response.body()?.tags
                     } else {
                         Timber.d("Error occurred with code ${response.code()}")
                     }
@@ -40,7 +36,5 @@ abstract class BaseDataStore(@PublishedApi internal val service: ApiService) {
 
         return result
     }
-
-
 
 }
