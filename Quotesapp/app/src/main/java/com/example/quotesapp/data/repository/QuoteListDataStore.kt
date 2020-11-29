@@ -14,6 +14,10 @@ class QuoteListDataStore(apiService: ApiService): QuoteListRepository, BaseDataS
         return fetchData { service.getQuotesList(selectedTag, "tags") }
     }
 
+    override fun searchedLoadData(searchWord: String): LiveData<List<Item>> {
+        return fetchData { service.getSearchableQuotesList(searchWord) }
+    }
+
 
 
 }

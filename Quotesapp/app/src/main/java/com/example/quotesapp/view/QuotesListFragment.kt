@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -12,14 +13,18 @@ import com.example.quotesapp.databinding.QuotesListFragmentBinding
 import com.example.quotesapp.view.adapter.QuotesListAdapter
 import com.example.quotesapp.viewModel.QuotesListViewModel
 import androidx.lifecycle.Observer
+import com.example.quotesapp.R
 import com.example.quotesapp.data.model.Item
 import com.example.quotesapp.data.model.Tags
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.quotes_list_fragment.*
 
 class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment(){
     private lateinit var viewDataBinding: QuotesListFragmentBinding
     private lateinit var adapter: QuotesListAdapter
     private val QuotesListViewModel:QuotesListViewModel by viewModel()
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +42,7 @@ class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment()
         viewDataBinding.viewModel?.fetchQuotesList(selectedTag.name)
         setupAdapter()
         setObservers()
+
     }
 
     private fun setObservers() {

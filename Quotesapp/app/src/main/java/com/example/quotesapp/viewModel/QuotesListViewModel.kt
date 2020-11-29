@@ -8,4 +8,8 @@ class QuotesListViewModel(val getQuoteListUseCase: GetQuoteListUseCase): BaseVie
     fun fetchQuotesList(selectedTag: String): LiveData<List<Item>> {
         return getQuoteListUseCase.getQuoteList(selectedTag)
     }
+
+    fun fetchSearchableQuotesList(searchWord: String): LiveData<List<Item>> {
+        return getQuoteListUseCase.getSearchableQuoteList(searchWord)
+    }
 }

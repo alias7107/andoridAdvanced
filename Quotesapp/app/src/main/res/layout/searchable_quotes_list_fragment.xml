@@ -6,7 +6,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="viewModel"
+            name="searchViewModel"
             type="com.example.quotesapp.viewModel.QuotesListViewModel" />
     </data>
 
@@ -15,17 +15,17 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/quotes_list_rv"
+            android:id="@+id/searchable_quotes_list_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{safeUnbox(viewModel.dataLoading) ? View.GONE : View.VISIBLE}" />
+            android:visibility="@{safeUnbox(searchViewModel.dataLoading) ? View.GONE : View.VISIBLE}" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="@{safeUnbox(viewModel.dataLoading) ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{safeUnbox(searchViewModel.dataLoading) ? View.VISIBLE : View.GONE}" />
 
         <TextView
             android:id="@+id/empty_text"
@@ -34,6 +34,6 @@
             android:layout_centerInParent="true"
             android:text="No quotes to display"
             android:textSize="18sp"
-            android:visibility="@{safeUnbox(viewModel.empty) ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{safeUnbox(searchViewModel.empty) ? View.VISIBLE : View.GONE}" />
     </RelativeLayout>
 </layout>

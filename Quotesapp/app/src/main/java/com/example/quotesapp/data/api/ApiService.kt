@@ -18,6 +18,9 @@ interface ApiService {
     @GET("quotes/")
     fun getQuotesList(@Query("filter") filter: String, @Query("type") type: String): Deferred<Response<QuoteResponse>>
 
+    @GET("quotes/")
+    fun getSearchableQuotesList(@Query("filter") filter: String): Deferred<Response<QuoteResponse>>
+
     @GET("typeahead/")
     fun getTagsList(): Deferred<Response<TypeHeadResponse>>
 

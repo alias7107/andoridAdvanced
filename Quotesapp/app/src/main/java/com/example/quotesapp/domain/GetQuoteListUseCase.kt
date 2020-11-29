@@ -8,4 +8,8 @@ class GetQuoteListUseCase(val quoteListRepository: QuoteListRepository) {
     fun getQuoteList(selectedTag: String): LiveData<List<Item>>{
         return quoteListRepository.loadData(selectedTag)
     }
+
+    fun getSearchableQuoteList(searchWord: String): LiveData<List<Item>>{
+        return quoteListRepository.searchedLoadData(searchWord)
+    }
 }

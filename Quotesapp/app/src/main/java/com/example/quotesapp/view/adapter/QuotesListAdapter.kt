@@ -26,6 +26,7 @@ class QuotesListAdapter  (private val QuotesListViewModel: QuotesListViewModel,
     override fun getItemCount() = quotesList.size
 
     override fun onBindViewHolder(holder: QuotesListViewHodler, position: Int) {
+
         holder.setup(quotesList[position])
 
     }

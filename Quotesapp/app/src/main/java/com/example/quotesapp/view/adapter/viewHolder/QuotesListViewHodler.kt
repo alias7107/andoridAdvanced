@@ -1,13 +1,18 @@
 package com.example.quotesapp.view.adapter.viewHolder
 
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quotesapp.data.model.Item
 import com.example.quotesapp.viewModel.QuotesListViewModel
 import com.example.quotesapp.BR
 import com.example.quotesapp.R
 import com.example.quotesapp.view.QuoteDetailFragment
+import com.example.quotesapp.view.SearchableQuotesListFragment
+import com.example.quotesapp.view.TagsListFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class QuotesListViewHodler constructor(
@@ -16,9 +21,13 @@ class QuotesListViewHodler constructor(
     val activity: FragmentActivity?
 ) : RecyclerView.ViewHolder(dataBinding.root) {
 
+
+
+
     fun setup(itemData: Item) {
         dataBinding.setVariable(BR.itemData, itemData)
         dataBinding.executePendingBindings()
+
         itemView.setOnClickListener{
 
             val fragment = QuoteDetailFragment(itemData)
