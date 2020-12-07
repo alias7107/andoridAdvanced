@@ -12,18 +12,23 @@
             type="com.example.quotesapp.data.model.Tags" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="4dp"
        >
 
         <TextView
             android:id="@+id/tagTitle"
-            android:layout_width="291dp"
-            android:layout_height="127dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fontFamily="@font/kaushan_script"
             android:text="@{tagData.name}"
             android:textSize="17sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="@drawable/layout_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

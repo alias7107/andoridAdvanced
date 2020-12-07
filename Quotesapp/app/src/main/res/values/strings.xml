@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Quotesapp</string>
+    <string name="wrong_data">Wrong data</string>
+    <string name="error_occurred">Error occurred</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+
     <string name="quote">I think whats really amazing is that given the scale of the web and getting the compute power we have today, were starting to see things that appear intelligent but actually arent semantically intelligent.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="twitterUsername">\@joeytribbiani</string>
 </resources>

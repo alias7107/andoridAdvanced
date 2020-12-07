@@ -3,6 +3,9 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/aladin</item>
         <item>@font/delius_swash_caps</item>
+        <item>@font/fredoka_one</item>
         <item>@font/kaushan_script</item>
+        <item>@font/playfair_display_bold</item>
+        <item>@font/vollkorn_bold_italic</item>
     </array>
 </resources>

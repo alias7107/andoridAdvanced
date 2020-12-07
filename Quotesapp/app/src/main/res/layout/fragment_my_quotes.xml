@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="myQuotesViewModel"
+            type="com.example.quotesapp.viewModel.QuotesListViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/quote_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quotes_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{safeUnbox(myQuotesViewModel.dataLoading) ? View.GONE : View.VISIBLE}" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{safeUnbox(myQuotesViewModel.dataLoading) ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/empty_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No quotes to display"
+            android:textSize="18sp"
+            android:visibility="@{safeUnbox(myQuotesViewModel.empty) ? View.VISIBLE : View.GONE}" />
+    </RelativeLayout>
+</layout>

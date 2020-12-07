@@ -11,49 +11,148 @@
             name="itemData"
             type="com.example.quotesapp.data.model.Item" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-
-
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-       >
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/rellay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_proPic"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_person_24" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/iv_proPic"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{itemData.author}"
+                    android:textColor="#5C7490"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
         <ImageView
-            android:id="@+id/leftSymbol"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:background="@drawable/symbol"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/title"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/title"
+            android:id="@+id/iv_postPic"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:layout_below="@+id/rellay"
+            android:background="@color/white"
             />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="291dp"
-            android:layout_height="127dp"
-            android:fontFamily="@font/kaushan_script"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rellay"
+            android:layout_alignBottom="@+id/iv_postPic"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/fredoka_one"
+            android:textSize="20sp"
+
+
             android:text="@{itemData.body}"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/leftSymbol"
-            tools:text="@string/quote" />
-        <ImageView
-            android:id="@+id/rightSymbol"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:background="@drawable/right"
-            app:layout_constraintStart_toEndOf="@id/title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            tools:text="sdsdsds" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/iv_postPic">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <RelativeLayout
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/iv_like"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="10dp"
+
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/like" />
+
+                    <TextView
+                        android:id="@+id/tv_like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="@{itemData.favorites_count}"
+                        android:textColor="#939699"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="10dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_baseline_thumb_down_alt_24" />
+
+                    <TextView
+                        android:id="@+id/tv_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="@{itemData.downvotes_count}"
+                        android:textColor="#939699"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </layout>
+

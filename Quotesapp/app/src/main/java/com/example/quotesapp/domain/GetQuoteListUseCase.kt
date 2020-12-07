@@ -12,4 +12,11 @@ class GetQuoteListUseCase(val quoteListRepository: QuoteListRepository) {
     fun getSearchableQuoteList(searchWord: String): LiveData<List<Item>>{
         return quoteListRepository.searchedLoadData(searchWord)
     }
+
+    fun favQuote(quote_id: Int): LiveData<List<Item>>{
+        return quoteListRepository.favQuote(quote_id)
+    }
+    fun myQuotes(): LiveData<List<Item>>{
+        return quoteListRepository.myQuotes()
+    }
 }

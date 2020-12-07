@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/categories"
-        android:icon="@drawable/ic_profileaction_name"
+        android:id="@+id/tagsListFragment"
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
         android:title="Category" />
     <item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_profileaction_name"
+        android:id="@+id/searchableQuotesListFragment"
+        android:icon="@drawable/ic_baseline_search_24"
         android:title="Search" />
     <item
-        android:id="@+id/notification"
-        android:icon="@drawable/ic_profileaction_name"
-        android:title="Notification" />
+        android:id="@+id/myQuotes"
+        android:icon="@drawable/ic_licked"
+        android:title="Favourite" />
     <item
-        android:id="@+id/account"
+        android:id="@+id/UserFragment"
         android:icon="@drawable/ic_profileaction_name"
         android:title="Profile" />
 

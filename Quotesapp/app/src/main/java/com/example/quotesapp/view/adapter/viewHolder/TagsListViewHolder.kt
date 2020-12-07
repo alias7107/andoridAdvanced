@@ -31,10 +31,11 @@ class TagsListViewHolder constructor(
 
             val fragment = QuotesListFragment(tagsData)
 
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_nav_fragment, fragment)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.tagsListFragment, fragment)?.commit()
 
 
         }
+
 
     }
 

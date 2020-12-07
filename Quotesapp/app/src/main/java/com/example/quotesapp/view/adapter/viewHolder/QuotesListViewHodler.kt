@@ -13,6 +13,7 @@ import com.example.quotesapp.view.QuoteDetailFragment
 import com.example.quotesapp.view.SearchableQuotesListFragment
 import com.example.quotesapp.view.TagsListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.quotes_list_item.view.*
 
 
 class QuotesListViewHodler constructor(
@@ -31,8 +32,18 @@ class QuotesListViewHodler constructor(
         itemView.setOnClickListener{
 
             val fragment = QuoteDetailFragment(itemData)
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_nav_fragment, fragment)?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment, fragment)?.addToBackStack(null)?.commit()
 
+        }
+
+        if(itemData.favourite){
+            itemView.iv_like.setImageResource(R.drawable.ic_licked)
+        }
+
+
+        itemView.iv_like.setOnClickListener {
+            QuotesListViewModel.favQuote(itemData.id)
+            itemView.iv_like.setBackgroundResource(R.drawable.ic_licked)
         }
 
 

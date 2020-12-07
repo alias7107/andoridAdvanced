@@ -18,6 +18,9 @@ abstract class BaseDataStore(@PublishedApi internal val service: ApiService) {
     abstract fun loadData(selectedTag: String): LiveData<List<Item>>
 
     abstract fun searchedLoadData(searchWord: String): LiveData<List<Item>>
+    abstract fun favQuote(quote_id: Int): LiveData<List<Item>>
+
+    abstract fun myQuotes(): LiveData<List<Item>>
 
     inline fun fetchData(crossinline call: (ApiService) -> Deferred<Response<QuoteResponse>>): LiveData<List<Item>> {
         val result = MutableLiveData<List<Item>>()

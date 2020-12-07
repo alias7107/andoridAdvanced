@@ -12,4 +12,12 @@ class QuotesListViewModel(val getQuoteListUseCase: GetQuoteListUseCase): BaseVie
     fun fetchSearchableQuotesList(searchWord: String): LiveData<List<Item>> {
         return getQuoteListUseCase.getSearchableQuoteList(searchWord)
     }
+
+    fun favQuote(quote_id: Int): LiveData<List<Item>>{
+        return getQuoteListUseCase.favQuote(quote_id)
+    }
+
+    fun myQuotes(): LiveData<List<Item>>{
+        return getQuoteListUseCase.myQuotes()
+    }
 }

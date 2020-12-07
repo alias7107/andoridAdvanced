@@ -16,6 +16,7 @@ import com.example.quotesapp.viewModel.TagsListViewModel
 import kotlinx.android.synthetic.main.quotes_list_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.tags_list_fragment.*
 
 class TagsListFragment: Fragment(){
@@ -54,7 +55,7 @@ class TagsListFragment: Fragment(){
         val viewModel = viewDataBinding.tagsViewModel
         if (viewModel != null) {
             adapter = TagsListAdapter(viewDataBinding.tagsViewModel!!, activity)
-            val layoutManager = LinearLayoutManager(activity)
+            val layoutManager = GridLayoutManager(activity,2)
             tags_list_rv.layoutManager = layoutManager
             tags_list_rv.addItemDecoration(
                 DividerItemDecoration(

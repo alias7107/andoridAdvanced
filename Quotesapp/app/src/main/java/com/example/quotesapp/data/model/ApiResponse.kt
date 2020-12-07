@@ -12,7 +12,8 @@ data class Item(
     var upvotes_count: String,
     var downvotes_count: String,
     var author: String,
-    var body: String
+    var body: String,
+var favourite: Boolean
 )
 
 data class TypeHeadResponse (
@@ -24,4 +25,13 @@ data class Tags(
     var count: Int,
     var permalink: String,
     var name: String
+)
+data class Quote(
+    var quote: QuoteItem
+)
+
+data class QuoteItem(
+    var author: String,
+    var body: String
+
 )

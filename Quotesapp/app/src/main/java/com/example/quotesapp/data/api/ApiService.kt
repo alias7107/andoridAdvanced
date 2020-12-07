@@ -1,15 +1,10 @@
 package com.example.quotesapp.data.api
 
-import com.example.quotesapp.data.model.QuoteResponse
-import com.example.quotesapp.data.model.TypeHeadResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.Query
 import com.example.quotesapp.BR
-import com.example.quotesapp.data.model.Tags
+import com.example.quotesapp.data.model.*
+import retrofit2.http.*
 
 interface ApiService {
 //    @Headers(
@@ -20,8 +15,25 @@ interface ApiService {
 
     @GET("quotes/")
     fun getSearchableQuotesList(@Query("filter") filter: String): Deferred<Response<QuoteResponse>>
+    @GET("quotes/")
+    fun getMyquotes(@Query("filter") filter: String, @Query("type") type: String): Deferred<Response<QuoteResponse>>
+
+    @POST("quotes/")
+    fun postUserQuote(@Body quote: Quote): Deferred<Response<Quote>>
+
 
     @GET("typeahead/")
     fun getTagsList(): Deferred<Response<TypeHeadResponse>>
+
+    @POST("session/")
+    fun validateWithLogin(
+        @Body data: LoginData
+    ):Deferred<Response<LoginResponse>>
+
+    @GET("users")
+    fun getUserProfile(@Query("login") login: String): Deferred<Response<UserProfile>>
+
+    @PUT("quotes/{quote_id}/fav")
+    fun favQuote(@Path("quote_id") quote_id: Int): Deferred<Response<QuoteResponse>>
 
 }

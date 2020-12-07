@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tagsListFragment">
+
+    <fragment
+        android:id="@+id/tagsListFragment"
+        android:name="com.example.quotesapp.view.TagsListFragment"
+        android:label="TagsListFragment" >
+        <action
+            android:id="@+id/action_tagsListFragment_to_quotesListFragment"
+            app:destination="@id/quote_list_container" />
+    </fragment>
+    <fragment
+        android:id="@+id/quote_list_container"
+        android:name="com.example.quotesapp.view.QuotesListFragment"
+        android:label="QuotesListFragment" >
+        <action
+            android:id="@+id/action_quotesListFragment_to_quoteDetailFragment"
+            app:destination="@id/quoteDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quoteDetailFragment"
+        android:name="com.example.quotesapp.view.QuoteDetailFragment"
+        android:label="QuoteDetailFragment" />
+    <fragment
+        android:id="@+id/searchableQuotesListFragment"
+        android:name="com.example.quotesapp.view.SearchableQuotesListFragment"
+        android:label="SearchableQuotesListFragment" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.quotesapp.view.Activities.LoginActivity"
+        android:label="login"
+        tools:layout="@layout/login" />
+    <fragment
+        android:id="@+id/UserFragment"
+        android:name="com.example.quotesapp.view.User"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_UserFragment_to_postQuote"
+            app:destination="@id/postQuote" />
+    </fragment>
+    <fragment
+        android:id="@+id/postQuote"
+        android:name="com.example.quotesapp.view.PostQuote"
+        android:label="fragment_post_quote"
+        tools:layout="@layout/fragment_post_quote" />
+    <fragment
+        android:id="@+id/myQuotes"
+        android:name="com.example.quotesapp.view.myQuotes"
+        android:label="fragment_my_quotes"
+        tools:layout="@layout/fragment_my_quotes" />
+</navigation>

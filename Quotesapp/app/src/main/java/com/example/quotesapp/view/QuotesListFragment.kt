@@ -1,9 +1,11 @@
 package com.example.quotesapp.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -18,6 +20,7 @@ import com.example.quotesapp.data.model.Item
 import com.example.quotesapp.data.model.Tags
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.quotes_list_fragment.*
+import java.util.*
 
 class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment(){
     private lateinit var viewDataBinding: QuotesListFragmentBinding
@@ -40,6 +43,7 @@ class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding.viewModel?.fetchQuotesList(selectedTag.name)
+
         setupAdapter()
         setObservers()
 

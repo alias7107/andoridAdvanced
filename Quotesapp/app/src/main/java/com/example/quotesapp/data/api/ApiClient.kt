@@ -2,6 +2,7 @@ package com.example.quotesapp.data.api
 
 
 import android.content.SharedPreferences
+import com.example.quotesapp.data.model.LoginResponse
 import com.example.quotesapp.utils.Constants.Companion.BASE_URL
 import com.example.quotesapp.utils.Constants.Companion.DEBUG
 import com.example.quotesapp.utils.Constants.Companion.REQUEST_TIMEOUT_DURATION
@@ -44,7 +45,8 @@ object ApiClient {
         return Interceptor { chain ->
             val newRequest = chain.request()
                 .newBuilder()
-                .addHeader("Authorization", "Token token=3076049eda9ba452981badda30fe2d47")
+                .addHeader("Authorization", "Token token=597b3b8ec128096c2fe0e32a65acb4e7")
+                .addHeader("User-Token", "lnDZXtRBomCOj1tt8khiDcw4CKT7W6D1iRru1L+dXomprtZBDQ6VbzmNnMAGQz2wuu8j4wFpIseDhBofq4Q1pQ==")
                 .build()
 
             chain.proceed(newRequest)
