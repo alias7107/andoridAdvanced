@@ -1,6 +1,7 @@
 package com.example.quotesapp.viewModel
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +20,7 @@ open class SignInViewModel(val loginUseCase: LoginUseCase): ViewModel() {
     var errorUserSession = MutableLiveData<String>()
 
     fun signIn(login: String, password: String): LiveData<LoginResponse> {
+
         return loginUseCase.Login(LoginData(User(login, password)))
 
     }

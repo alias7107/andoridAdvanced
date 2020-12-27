@@ -21,42 +21,47 @@
     >
 
 
-    <LinearLayout
-        android:id="@+id/tags"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp">
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="23dp"
-            android:background="@drawable/tags"/>
-        <TextView
-            android:id="@+id/tag"
+
+        <LinearLayout
+            android:id="@+id/tags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text = "sdsd"
-            android:fontFamily="@font/vollkorn_bold_italic"
-            android:text="@{itemDetail.tags.toString().substring(1, itemDetail.tags.toString().length()-1)}"
-            android:layout_marginStart="5dp"
-            />
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="23dp"
+                android:background="@drawable/tags" />
+
+            <TextView
+                android:id="@+id/tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/vollkorn_bold_italic"
+                android:text="@{itemDetail.tags.toString().substring(1, itemDetail.tags.toString().length()-1)}"
+                tools:text="sdsd" />
+
+        </LinearLayout>
 
     <TextView
         android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="298dp"
+        android:layout_height="375dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="150dp"
-        android:textAlignment="center"
         android:layout_marginRight="10dp"
+        android:autoSizeMaxTextSize="90sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
         android:fontFamily="@font/playfair_display_bold"
         android:text="@{itemDetail.body}"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/author"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,54 +69,54 @@
         app:layout_constraintTop_toBottomOf="@id/tags"
         tools:text="dsdkmsifsndj" />
 
-    <TextView
-        android:id="@+id/author"
-        android:fontFamily="@font/aladin"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/white"
-        tools:text="author"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{itemDetail.author}"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content"
-
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="200dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/author">
-
-        <ImageView
-            android:id="@+id/like"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="180dp"
-            android:background="@drawable/ic_baseline_favorite_border_24"
-            android:contentDescription="like" />
-
         <TextView
-            android:id="@+id/favCount"
+            android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@{itemDetail.favorites_count}"
-
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/aladin"
+            android:text="@{itemDetail.author}"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/content"
 
-            tools:text="5" />
+            tools:text="author" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="200dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/author">
+
+            <ImageView
+                android:id="@+id/like"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="180dp"
+                android:background="@drawable/ic_baseline_favorite_border_24"
+                android:contentDescription="like" />
+
+            <TextView
+                android:id="@+id/favCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@{itemDetail.favorites_count}"
+
+                android:textColor="@color/white"
+                android:textSize="30sp"
+
+                tools:text="5" />
+
+        </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

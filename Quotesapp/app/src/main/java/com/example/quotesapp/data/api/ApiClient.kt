@@ -2,6 +2,7 @@ package com.example.quotesapp.data.api
 
 
 import android.content.SharedPreferences
+import com.example.quotesapp.data.api.SessionManager.Companion.USER_TOKEN
 import com.example.quotesapp.data.model.LoginResponse
 import com.example.quotesapp.utils.Constants.Companion.BASE_URL
 import com.example.quotesapp.utils.Constants.Companion.DEBUG
@@ -42,14 +43,22 @@ object ApiClient {
     }
 
     fun getAuthInterceptor(sharedPreferences: SharedPreferences): Interceptor {
+//        val sessionManager = SessionManager(Context)
         return Interceptor { chain ->
             val newRequest = chain.request()
                 .newBuilder()
                 .addHeader("Authorization", "Token token=597b3b8ec128096c2fe0e32a65acb4e7")
-                .addHeader("User-Token", "lnDZXtRBomCOj1tt8khiDcw4CKT7W6D1iRru1L+dXomprtZBDQ6VbzmNnMAGQz2wuu8j4wFpIseDhBofq4Q1pQ==")
-                .build()
+                .addHeader("User-Token", "AuKW/fCl+0yqXlfj/aT8mSKvo0eVNQnP+d6F89mn1AN8nYFDnzwHiaSDULeZSyTiqAc3oF87J7q+HJlzhk3eYA==")
+//                .addHeader("User-Token", sharedPreferences.getString(USER_TOKEN, null))
 
-            chain.proceed(newRequest)
+
+//            sessionManager.fetchAuthToken()?.let{
+//                newRequest.addHeader("User-Token", it)
+//            }
+
+//            sharedPreferences.getString(USER_TOKEN,null)?.let{newRequest.header("User-Token: ${sharedPreferences.getString(USER_TOKEN, null)}")}
+
+            chain.proceed(newRequest.build())
         }
     }
 }

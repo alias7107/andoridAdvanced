@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:layout_width="185dp"
+    android:layout_height="300dp"
+    android:layout_marginBottom="3dp">
+
+    <ImageView
+        android:id="@+id/theme_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/theme_bg"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:src="@drawable/shymbulak" >
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/choosen"
+        android:layout_width="95dp"
+        android:layout_height="83dp"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/theme_iv"
+        app:layout_constraintEnd_toEndOf="@id/theme_iv"
+        app:layout_constraintStart_toStartOf="@id/theme_iv"
+        app:layout_constraintTop_toTopOf="@id/theme_iv"
+        android:src="@drawable/ic_baseline_check_circle_24"
+        android:visibility="gone"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

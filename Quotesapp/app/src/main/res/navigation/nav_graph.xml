@@ -53,4 +53,9 @@
         android:name="com.example.quotesapp.view.myQuotes"
         android:label="fragment_my_quotes"
         tools:layout="@layout/fragment_my_quotes" />
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.example.quotesapp.view.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_theme" />
 </navigation>

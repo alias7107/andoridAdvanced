@@ -1,7 +1,9 @@
 package com.example.quotesapp.data.repository
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 
 import com.example.quotesapp.data.api.ApiService
+import com.example.quotesapp.data.api.SessionManager
 import com.example.quotesapp.data.model.Item
 import com.example.quotesapp.data.model.Tags
 import com.example.quotesapp.domain.QuoteListRepository

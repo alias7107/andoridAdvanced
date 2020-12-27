@@ -65,5 +65,8 @@ class TagsListFragment: Fragment(){
             )
             tags_list_rv.adapter = adapter
         }
+        tags_list_rv.setHasFixedSize(true)
+        tags_list_rv.setItemViewCacheSize(20)
     }
+
 }

@@ -1,5 +1,7 @@
 package com.example.quotesapp.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,6 +36,7 @@ class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment()
         savedInstanceState: Bundle?
     ): View? {
         viewDataBinding = QuotesListFragmentBinding.inflate(inflater, container, false).apply {
+
             setLifecycleOwner(viewLifecycleOwner)
         }
         viewDataBinding.viewModel = QuotesListViewModel

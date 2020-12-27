@@ -13,10 +13,12 @@ import com.example.quotesapp.databinding.QuotesListItemBinding
 import com.example.quotesapp.view.adapter.viewHolder.QuotesListViewHodler
 import com.example.quotesapp.viewModel.QuotesListViewModel
 import java.util.*
+import kotlin.math.abs
 
 
 class QuotesListAdapter  (private val QuotesListViewModel: QuotesListViewModel,
-                          private val activity: FragmentActivity?) :
+                          private val activity: FragmentActivity?
+) :
     RecyclerView.Adapter<QuotesListViewHodler>() {
     var quotesList: List<Item> = emptyList()
 
@@ -32,11 +34,32 @@ class QuotesListAdapter  (private val QuotesListViewModel: QuotesListViewModel,
     override fun onBindViewHolder(holder: QuotesListViewHodler, position: Int) {
         val backImage=  holder.itemView.findViewById<ImageView>(R.id.iv_postPic)
         val text=  holder.itemView.findViewById<TextView>(R.id.title)
+        val like = holder.itemView.findViewById<ImageView>(R.id.iv_like)
+
         val rnd = Random()
-        val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
-        val fontColor: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+        var color: Int = 0
+        var rc: Int = 0
+        var rf: Int = 0
+        var gc: Int = 0
+        var gf: Int = 0
+        var bc: Int = 0
+        var bf: Int = 0
+        var fontColor: Int = 0
+        while(abs(rc-rf) < 230 && abs(gc-gf) < 230 && abs(bc-bf) < 230 ){
+            rc = rnd.nextInt(256)
+            rf = rnd.nextInt(256)
+            gc = rnd.nextInt(256)
+            gf = rnd.nextInt(256)
+            bc = rnd.nextInt(256)
+            bf = rnd.nextInt(256)
+
+        }
+        color = Color.argb(255,rc, gc, bc)
+        fontColor = Color.argb(255, rf, gf, bf)
+
         backImage.setBackgroundColor(color)
         text.setTextColor(fontColor)
+
 
 //        val rnd = Random()
 //        val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
@@ -49,4 +72,7 @@ class QuotesListAdapter  (private val QuotesListViewModel: QuotesListViewModel,
         this.quotesList = quotesList
         notifyDataSetChanged()
     }
+
+
+
 }

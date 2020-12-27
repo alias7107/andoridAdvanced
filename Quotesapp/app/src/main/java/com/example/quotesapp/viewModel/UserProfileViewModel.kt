@@ -1,5 +1,6 @@
 package com.example.quotesapp.viewModel
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,10 +11,13 @@ import com.example.quotesapp.domain.GetTagsListUseCase
 import com.example.quotesapp.domain.GetUserProfileUseCase
 
 class UserProfileViewModel(val userProfileUseCase: GetUserProfileUseCase): ViewModel() {
+
+
     val username = MutableLiveData<String>()
 
 
     init {
+
         getUsername()
 
     }
