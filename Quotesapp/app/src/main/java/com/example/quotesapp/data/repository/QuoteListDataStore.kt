@@ -24,8 +24,12 @@ class QuoteListDataStore(apiService: ApiService): QuoteListRepository, BaseDataS
         return fetchData { service.favQuote(quote_id) }
     }
 
-    override fun myQuotes(): LiveData<List<Item>> {
-        return fetchData { service.getMyquotes("ashkeyevli","user") }
+    override fun unfavQuote(quote_id: Int): LiveData<List<Item>> {
+        return fetchData { service.unfavQuote(quote_id) }
+    }
+
+    override fun myQuotes(username: String): LiveData<List<Item>> {
+        return fetchData { service.getMyquotes(username,"user") }
     }
 
 

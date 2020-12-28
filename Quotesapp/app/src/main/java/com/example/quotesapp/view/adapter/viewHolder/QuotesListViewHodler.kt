@@ -70,6 +70,7 @@ class QuotesListViewHodler constructor(
             editor.apply()
             itemData.favourite = true}
             else{
+                QuotesListViewModel.unfavQuote(itemData.id)
                 itemView.iv_like.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 favCount = favCount - 1
                 tvLike.setText(favCount.toString())

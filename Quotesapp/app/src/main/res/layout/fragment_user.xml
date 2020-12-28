@@ -172,7 +172,7 @@ android:background="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -203,7 +203,27 @@ android:background="@color/white"
                         android:id="@+id/myActivity"
                         android:layout_width="match_parent"
                         android:layout_height="150px"
-                        android:text = "Logout">
+                        android:text = "MY quotes">
+                    </Button>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="150px"
+                        android:text = "logout">
                     </Button>
 
 

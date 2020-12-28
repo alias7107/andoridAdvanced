@@ -21,8 +21,11 @@ class QuotesListViewModel(val getQuoteListUseCase: GetQuoteListUseCase): BaseVie
     fun favQuote(quote_id: Int): LiveData<List<Item>>{
         return getQuoteListUseCase.favQuote(quote_id)
     }
+    fun unfavQuote(quote_id: Int): LiveData<List<Item>>{
+        return getQuoteListUseCase.unfavQuote(quote_id)
+    }
 
-    fun myQuotes(): LiveData<List<Item>>{
-        return getQuoteListUseCase.myQuotes()
+    fun myQuotes(username: String): LiveData<List<Item>>{
+        return getQuoteListUseCase.myQuotes(username)
     }
 }

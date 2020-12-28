@@ -84,11 +84,11 @@ val networkModule = module {
 
 val sharedPrefModule = module {
     single {
-        androidApplication().getSharedPreferences("default", Context.MODE_PRIVATE)
+        androidApplication().getSharedPreferences("Login", Context.MODE_PRIVATE)
     }
 
     single<SharedPreferences.Editor> {
-        androidApplication().getSharedPreferences("default", Context.MODE_PRIVATE)
+        androidApplication().getSharedPreferences("Login", Context.MODE_PRIVATE)
             .edit()
     }
 }

@@ -1,5 +1,7 @@
 package com.example.quotesapp.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +21,9 @@ class myQuotes : Fragment() {
     private lateinit var viewDataBinding: FragmentMyQuotesBinding
     private lateinit var adapter: QuotesListAdapter
     private val QuotesListViewModel: QuotesListViewModel by viewModel()
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var username: String
+
 
 
     override fun onCreateView(
@@ -35,7 +40,9 @@ class myQuotes : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding.myQuotesViewModel?.myQuotes()
+        sharedPreferences = context?.getSharedPreferences("Login", Context.MODE_PRIVATE)!!
+        username = sharedPreferences.getString("username", null)!!
+        viewDataBinding.myQuotesViewModel?.myQuotes(username)
         setupAdapter()
 
         setObservers()
@@ -46,7 +53,7 @@ class myQuotes : Fragment() {
     }
 
     private fun setObservers() {
-        viewDataBinding.myQuotesViewModel?.myQuotes()?.observe(viewLifecycleOwner, Observer {
+        viewDataBinding.myQuotesViewModel?.myQuotes(username)?.observe(viewLifecycleOwner, Observer {
             adapter.updateQuoteList(it)
 
 

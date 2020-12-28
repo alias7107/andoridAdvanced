@@ -16,7 +16,10 @@ class GetQuoteListUseCase(val quoteListRepository: QuoteListRepository) {
     fun favQuote(quote_id: Int): LiveData<List<Item>>{
         return quoteListRepository.favQuote(quote_id)
     }
-    fun myQuotes(): LiveData<List<Item>>{
-        return quoteListRepository.myQuotes()
+    fun unfavQuote(quote_id: Int): LiveData<List<Item>>{
+        return quoteListRepository.unfavQuote(quote_id)
+    }
+    fun myQuotes(username: String): LiveData<List<Item>>{
+        return quoteListRepository.myQuotes(username)
     }
 }

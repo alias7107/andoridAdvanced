@@ -35,5 +35,7 @@ interface ApiService {
 
     @PUT("quotes/{quote_id}/fav")
     fun favQuote(@Path("quote_id") quote_id: Int): Deferred<Response<QuoteResponse>>
+    @PUT("quotes/{quote_id}/unfav")
+    fun unfavQuote(@Path("quote_id") quote_id: Int): Deferred<Response<QuoteResponse>>
 
 }
