@@ -21,7 +21,6 @@ interface ApiService {
     @POST("quotes/")
     fun postUserQuote(@Body quote: Quote): Deferred<Response<Quote>>
 
-
     @GET("typeahead/")
     fun getTagsList(): Deferred<Response<TypeHeadResponse>>
 

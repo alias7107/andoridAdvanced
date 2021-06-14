@@ -21,16 +21,15 @@ import androidx.fragment.app.Fragment
 import com.example.quotesapp.R
 import com.example.quotesapp.data.model.Item
 import com.squareup.picasso.Picasso
-import com.example.quotesapp.databinding.DetailActivityBindingImpl
 import com.example.quotesapp.BR
-import com.example.quotesapp.databinding.DetailActivityBindingV26Impl
+import com.example.quotesapp.databinding.FragmentDetailBinding
 import com.example.quotesapp.viewModel.QuotesListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
 class QuoteDetailFragment constructor(private val itemDetail: Item, private val QuotesListViewModel: QuotesListViewModel ): Fragment() {
-    private lateinit var viewDataBinding: DetailActivityBindingV26Impl
+    private lateinit var viewDataBinding: FragmentDetailBinding
     private lateinit var prefLike: SharedPreferences
 
 
@@ -39,8 +38,8 @@ class QuoteDetailFragment constructor(private val itemDetail: Item, private val 
         container: ViewGroup?,
         savedInstanceState: Bundle?
 
-    ): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.detail_activity, container, false)
+    ): View {
+        viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         val view= viewDataBinding.root
         val prefs:SharedPreferences = activity?.getSharedPreferences("Theme", Context.MODE_PRIVATE)!!
         val ivTheme  = view.findViewById<ConstraintLayout>(R.id.quoteDetailFragment)
@@ -55,7 +54,6 @@ class QuoteDetailFragment constructor(private val itemDetail: Item, private val 
         val image = prefs.getInt("selectedTheme", 0)
         val imageName = prefs.getString("themeName", null)
 
-        Log.d(image.toString(),"ourImage")
         if(image!=0) {
             ivTheme?.setBackgroundResource(image)
             if (imageName.equals("kolsai") || imageName.equals("foggy_forest") || imageName.equals("beachjpg")) {

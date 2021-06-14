@@ -1,6 +1,7 @@
 package com.example.quotesapp.data.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.quotesapp.data.api.ApiService
 import com.example.quotesapp.data.model.Item
@@ -13,7 +14,7 @@ class LoginDataStore (apiService: ApiService, context: Context): AccountReposito
 
 
     override fun validateWithLogin(data: LoginData): LiveData<LoginResponse> {
-        return authenticate { service.validateWithLogin(data) }
+        return authenticate {service.validateWithLogin(data) }
     }
 
 

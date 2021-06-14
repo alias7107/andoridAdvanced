@@ -46,8 +46,12 @@ object ApiClient {
 //        val sessionManager = SessionManager(Context)
         return Interceptor { chain ->
             val newRequest = chain.request()
-                .newBuilder()
-                .addHeader("Authorization", "Token token=597b3b8ec128096c2fe0e32a65acb4e7")
+                .newBuilder().also{
+                    it.addHeader("Authorization", "Token token=597b3b8ec128096c2fe0e32a65acb4e7")
+                    val sessionID = sharedPreferences.getString("sessionId", null)?.let{sharedPreferences.getString("sessionId", null)}!!
+                    it.addHeader( "User-Token", sessionID)
+//                   {newRequest.header("User-Token", sharedPreferences.getString("sessionId", null))}
+                }
 //                .addHeader("User-Token", "AuKW/fCl+0yqXlfj/aT8mSKvo0eVNQnP+d6F89mn1AN8nYFDnzwHiaSDULeZSyTiqAc3oF87J7q+HJlzhk3eYA==")
 //                .addHeader("User-Token", sharedPreferences.getString("sessionId", null))
 
@@ -55,7 +59,7 @@ object ApiClient {
 //            sessionManager.fetchAuthToken()?.let{
 //                newRequest.addHeader("User-Token", it)
 //            }
-            sharedPreferences.getString("sessionId", null)?.let{newRequest.header("User-Token", sharedPreferences.getString("sessionId", null))}
+//            sharedPreferences.getString("sessionId", null)?.let{newRequest.header("User-Token", sharedPreferences.getString("sessionId", null))}
 //            sharedPreferences.getString(USER_TOKEN,null)?.let{newRequest.header("User-Token: ${sharedPreferences.getString(USER_TOKEN, null)}")}
 
             chain.proceed(newRequest.build())

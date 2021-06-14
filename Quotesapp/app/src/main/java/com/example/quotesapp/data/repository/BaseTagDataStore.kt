@@ -1,6 +1,7 @@
 package com.example.quotesapp.data.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quotesapp.data.LocalDatabase.TagsDao

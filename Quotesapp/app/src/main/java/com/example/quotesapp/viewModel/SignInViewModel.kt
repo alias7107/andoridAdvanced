@@ -1,27 +1,35 @@
 package com.example.quotesapp.viewModel
 
-import android.content.Context
 import android.util.Log
-import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.quotesapp.data.model.*
-import com.example.quotesapp.domain.AccountRepository
-import com.example.quotesapp.domain.GetQuoteListUseCase
-import com.example.quotesapp.domain.GetTagsListUseCase
 import com.example.quotesapp.domain.LoginUseCase
-import kotlinx.coroutines.launch
 
 open class SignInViewModel(val loginUseCase: LoginUseCase): ViewModel() {
 
-
-    var userSession = MutableLiveData<LoginResponse>()
-    var errorUserSession = MutableLiveData<String>()
+    var state = MutableLiveData<SignInState>()
+    var message = MutableLiveData<String>()
 
     fun signIn(login: String, password: String): LiveData<LoginResponse> {
+        state.value = SignInState.ShowLoading
+        val result = loginUseCase.Login(LoginData(User(login, password)))
 
-        return loginUseCase.Login(LoginData(User(login, password)))
+        val ss = Observer<LoginResponse> { loginResponse ->
+            if (loginResponse.message ==null) {
+
+                state.value = SignInState.Result
+                state.value = SignInState.HideLoading
+            } else {
+                state.value = SignInState.FailedLoading
+                state.value = SignInState.HideLoading
+                message.value = loginResponse.message
+            }
+            result.removeObserver({})
+        }
+
+        result.observeForever(ss)
+        return result
 
     }
+
 }

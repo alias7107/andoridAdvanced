@@ -26,7 +26,6 @@ data class TypeHeadResponse (
 )
 @Entity(tableName = "Tags_table")
 data class Tags(
-
     var id: Int,
     @ColumnInfo(name = "count")
     var count: Int,

@@ -4,7 +4,6 @@ data class LoginData (
     var user: User
 )
 
-
 data class User(
     var login: String,
     var password: String
