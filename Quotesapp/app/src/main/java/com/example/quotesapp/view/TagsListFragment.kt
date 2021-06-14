@@ -38,13 +38,16 @@ class TagsListFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding.tagsViewModel?.fetchTagsList()
+
         setupAdapter()
         setObservers()
     }
 
     private fun setObservers() {
+
         viewDataBinding.tagsViewModel?.fetchTagsList()?.observe(viewLifecycleOwner, Observer {
             adapter.updateTagsList(it)
+
 
 
         })
@@ -63,10 +66,10 @@ class TagsListFragment: Fragment(){
                     layoutManager.orientation
                 )
             )
+//            adapter.setHasStableIds(true)
             tags_list_rv.adapter = adapter
         }
         tags_list_rv.setHasFixedSize(true)
-        tags_list_rv.setItemViewCacheSize(20)
     }
 
 }
