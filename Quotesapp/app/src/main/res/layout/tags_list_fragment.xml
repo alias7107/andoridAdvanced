@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,19 +11,154 @@
             type="com.example.quotesapp.viewModel.TagsListViewModel" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/tagsListFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@drawable/cut_card_background"
+        android:layout_height="match_parent">
 
+        <io.supercharge.shimmerlayout.ShimmerLayout
+            android:id="@+id/shimmerLayout"
+            app:shimmer_animation_duration="1200"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+
+                    android:orientation="horizontal">
+                    <include layout="@layout/tegs_item_placeholder"/>
+
+                    <include
+                        layout="@layout/tegs_item_placeholder"
+                        android:layout_width="170dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </io.supercharge.shimmerlayout.ShimmerLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tags_list_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:background="@drawable/cut_card_background"
-            android:visibility="@{safeUnbox(tagsViewModel.dataLoading) ? View.GONE : View.VISIBLE}" />
+
+            />
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
@@ -39,5 +175,6 @@
             android:text="No quotes to display"
             android:textSize="18sp"
             android:visibility="@{safeUnbox(tagsViewModel.empty) ? View.VISIBLE : View.GONE}" />
+
     </RelativeLayout>
 </layout>

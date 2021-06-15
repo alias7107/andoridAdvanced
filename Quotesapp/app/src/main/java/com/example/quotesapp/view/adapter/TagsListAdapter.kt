@@ -27,62 +27,56 @@ class TagsListAdapter (private val TagsListViewModel: TagsListViewModel,
     }
 
     override fun getItemCount(): Int {
-        if (tagsList.size > 25){
-            return 25
-        }
-        else {
-            return tagsList.size
-        }
+        return tagsList.size
+//        if (tagsList.size > 25){
+//            return 25
+//        }
+//        else {
+//            return tagsList.size
+//        }
     }
 
     override fun onBindViewHolder(holder: TagsListViewHolder, position: Int) {
         holder.setup(tagsList[position])
-        val images = intArrayOf(R.drawable.happiness, R.drawable.work, R.drawable.kolsai, R.drawable.shymbulak, R.drawable.beachjpg,R.drawable.wooden, R.drawable.foggy_forest)
-        val rand = Random()
 
-//        holder.itemView.ivTag.setBackgroundResource(images[rand.nextInt(images.size)])
-
-        Picasso.get().load(images[rand.nextInt(images.size)]).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
-//        holder.itemView.ivTag.setBackgroundResource(R.drawable.happiness)
-//        if(tagsList[position].name.equals("religion")||tagsList[position].name.equals("god")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.religion_god)
-//        }
-//        else if(tagsList[position].name.equals("happiness")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.happiness)
-//        }
-//        else if(tagsList[position].name.equals("life")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.life)
-//        }
-//        else if(tagsList[position].name.equals("work")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.work)
-//        }
-//        else if(tagsList[position].name.equals("men")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.men)
-//        }
-//        else if(tagsList[position].name.equals("nature")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.kolsai)
-//        }
-//        else if(tagsList[position].name.equals("great")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.shymbulak)
-//        }
-//        else if(tagsList[position].name.equals("love")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.lovejpg)
-//        }
-//        else if(tagsList[position].name.equals("truth")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.beachjpg)
-//        }
-//        else if(tagsList[position].name.equals("knowledge")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.knowledge)
-//        }
-//        else if(tagsList[position].name.equals("science")){
-//            holder.itemView.ivTag.setBackgroundResource(R.drawable.science)
-//        }
-//        else {
-//
-//
-//        }
-
-
+        if(tagsList[position].name.equals("religion")||tagsList[position].name.equals("god")){
+            Picasso.get().load(R.drawable.religion_god).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("happiness")){
+            Picasso.get().load(R.drawable.happiness).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("life")){
+            Picasso.get().load(R.drawable.life).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("work")){
+            Picasso.get().load(R.drawable.work).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("men")){
+            Picasso.get().load(R.drawable.men).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("nature")){
+            Picasso.get().load(R.drawable.kolsai).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("great")){
+            Picasso.get().load(R.drawable.shymbulak).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("love")){
+            Picasso.get().load(R.drawable.lovejpg).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("truth")){
+            Picasso.get().load(R.drawable.beachjpg).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("knowledge")){
+            Picasso.get().load(R.drawable.knowledge).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else if(tagsList[position].name.equals("science")){
+            Picasso.get().load(R.drawable.science).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
+        else {
+            val images = intArrayOf(R.drawable.life ,R.drawable.men,R.drawable.lovejpg, R.drawable.science,R.drawable.knowledge,R.drawable.happiness, R.drawable.work, R.drawable.kolsai, R.drawable.shymbulak, R.drawable.beachjpg,R.drawable.wooden, R.drawable.foggy_forest)
+            val rand = Random()
+            Picasso.get().load(images[rand.nextInt(images.size)]).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
+        }
 
     }
 
