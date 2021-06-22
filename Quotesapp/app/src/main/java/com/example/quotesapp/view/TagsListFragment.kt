@@ -6,17 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.quotesapp.databinding.QuotesListFragmentBinding
 import com.example.quotesapp.databinding.TagsListFragmentBinding
-import com.example.quotesapp.view.adapter.QuotesListAdapter
 import com.example.quotesapp.view.adapter.TagsListAdapter
-import com.example.quotesapp.viewModel.QuotesListViewModel
 import com.example.quotesapp.viewModel.TagsListViewModel
-import kotlinx.android.synthetic.main.quotes_list_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.quotesapp.data.model.Tags
 import kotlinx.android.synthetic.main.tags_list_fragment.*
 
 class TagsListFragment: Fragment(){
@@ -28,9 +25,11 @@ class TagsListFragment: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         viewDataBinding = TagsListFragmentBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(viewLifecycleOwner)
         }
+
         viewDataBinding.tagsViewModel = TagsListViewModel
         return viewDataBinding.root
     }
@@ -38,28 +37,19 @@ class TagsListFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         shimmerLayout.startShimmerAnimation()
-        viewDataBinding.tagsViewModel?.fetchTagsList()
-
         setupAdapter()
         setObservers()
-
-
-
     }
+
 
     private fun setObservers() {
-
-        viewDataBinding.tagsViewModel?.fetchTagsList()?.observe(viewLifecycleOwner, Observer {
+        viewDataBinding.tagsViewModel?.getTagsList()?.observe(viewLifecycleOwner, Observer {
             adapter.updateTagsList(it)
             shimmerLayout.stopShimmerAnimation()
-            shimmerLayout.visibility = View.GONE
-
-
-
-        })
-
-
+            shimmerLayout.visibility = View.GONE })
     }
+
+
 
     private fun setupAdapter() {
         val viewModel = viewDataBinding.tagsViewModel
@@ -73,10 +63,10 @@ class TagsListFragment: Fragment(){
                     layoutManager.orientation
                 )
             )
-//            adapter.setHasStableIds(true)
             tags_list_rv.adapter = adapter
 
         }
+//        view?.findNavController()?.navigate(TagsListFragmentDirections)
         tags_list_rv.setHasFixedSize(true)
         tags_list_rv.setItemViewCacheSize(20)
     }

@@ -1,12 +1,10 @@
-package com.example.quotesapp.data.repository
+package com.example.quotesapp.data.repository.DataStore
 
 import androidx.lifecycle.LiveData
 import com.example.quotesapp.data.api.ApiService
-import com.example.quotesapp.data.model.LoginData
-import com.example.quotesapp.data.model.LoginResponse
 import com.example.quotesapp.data.model.Quote
-import com.example.quotesapp.domain.AccountRepository
-import com.example.quotesapp.domain.PostQuoteRepository
+import com.example.quotesapp.data.repository.Base.BasePostQuote
+import com.example.quotesapp.domain.Repository.PostQuoteRepository
 
 class PostQuoteDataStore (apiService: ApiService): PostQuoteRepository, BasePostQuote(apiService) {
 

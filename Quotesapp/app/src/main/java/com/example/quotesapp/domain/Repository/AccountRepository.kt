@@ -1,4 +1,4 @@
-package com.example.quotesapp.domain
+package com.example.quotesapp.domain.Repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData

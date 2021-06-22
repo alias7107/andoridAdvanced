@@ -18,7 +18,15 @@ data class Item(
     var downvotes_count: String,
     var author: String,
     var body: String,
-    var favourite: Boolean
+    var favourite: Boolean,
+    var user_details: UserDetails
+)
+
+data class UserDetails(
+    var favorite: Boolean,
+    var upvote: Boolean,
+    var downvote: Boolean,
+    var hidden: Boolean,
 )
 
 data class TypeHeadResponse (
@@ -36,6 +44,9 @@ data class Tags(
     @ColumnInfo(name = "name")
     var name: String
 )
+
+
+
 data class Quote(
     var quote: QuoteItem
 )

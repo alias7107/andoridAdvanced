@@ -1,14 +1,11 @@
-package com.example.quotesapp.data.repository
+package com.example.quotesapp.data.repository.Base
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quotesapp.data.api.ApiService
-import com.example.quotesapp.data.api.SessionManager
 import com.example.quotesapp.data.model.*
-import com.example.quotesapp.view.Activities.LoginActivity
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import retrofit2.Response

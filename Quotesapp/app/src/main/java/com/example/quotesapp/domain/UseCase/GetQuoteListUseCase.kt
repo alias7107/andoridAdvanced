@@ -1,7 +1,8 @@
-package com.example.quotesapp.domain
+package com.example.quotesapp.domain.UseCase
 
 import androidx.lifecycle.LiveData
 import com.example.quotesapp.data.model.Item
+import com.example.quotesapp.domain.Repository.QuoteListRepository
 
 
 class GetQuoteListUseCase(val quoteListRepository: QuoteListRepository) {
@@ -13,12 +14,7 @@ class GetQuoteListUseCase(val quoteListRepository: QuoteListRepository) {
         return quoteListRepository.searchedLoadData(searchWord)
     }
 
-    fun favQuote(quote_id: Int): LiveData<List<Item>>{
-        return quoteListRepository.favQuote(quote_id)
-    }
-    fun unfavQuote(quote_id: Int): LiveData<List<Item>>{
-        return quoteListRepository.unfavQuote(quote_id)
-    }
+
     fun myQuotes(username: String): LiveData<List<Item>>{
         return quoteListRepository.myQuotes(username)
     }

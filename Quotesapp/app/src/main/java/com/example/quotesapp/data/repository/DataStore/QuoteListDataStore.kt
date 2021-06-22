@@ -1,14 +1,10 @@
-package com.example.quotesapp.data.repository
-import android.content.Context
-import android.content.SharedPreferences
+package com.example.quotesapp.data.repository.DataStore
 import androidx.lifecycle.LiveData
 
 import com.example.quotesapp.data.api.ApiService
-import com.example.quotesapp.data.api.SessionManager
 import com.example.quotesapp.data.model.Item
-import com.example.quotesapp.data.model.Tags
-import com.example.quotesapp.domain.QuoteListRepository
-import com.example.quotesapp.utils.Constants
+import com.example.quotesapp.data.repository.Base.BaseDataStore
+import com.example.quotesapp.domain.Repository.QuoteListRepository
 
 class QuoteListDataStore(apiService: ApiService): QuoteListRepository, BaseDataStore(apiService) {
 
@@ -21,13 +17,7 @@ class QuoteListDataStore(apiService: ApiService): QuoteListRepository, BaseDataS
         return fetchData { service.getSearchableQuotesList(searchWord) }
     }
 
-    override fun favQuote(quote_id: Int): LiveData<List<Item>> {
-        return fetchData { service.favQuote(quote_id) }
-    }
 
-    override fun unfavQuote(quote_id: Int): LiveData<List<Item>> {
-        return fetchData { service.unfavQuote(quote_id) }
-    }
 
     override fun myQuotes(username: String): LiveData<List<Item>> {
         return fetchData { service.getMyquotes(username,"user") }

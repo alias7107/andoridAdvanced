@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/tagsListFragment"
         android:name="com.example.quotesapp.view.TagsListFragment"
-        android:label="TagsListFragment" >
+        android:label="TagsListFragment">
         <action
             android:id="@+id/action_tagsListFragment_to_quotesListFragment"
             app:destination="@id/quote_list_container" />
@@ -16,19 +16,40 @@
     <fragment
         android:id="@+id/quote_list_container"
         android:name="com.example.quotesapp.view.QuotesListFragment"
-        android:label="QuotesListFragment" >
+        android:label="QuotesListFragment">
         <action
             android:id="@+id/action_quotesListFragment_to_quoteDetailFragment"
             app:destination="@id/quoteDetailFragment" />
+        <action
+            android:id="@+id/action_quote_list_container_to_tagsListFragment"
+            app:destination="@id/tagsListFragment" />
+        <argument
+            android:name="selectedTag"
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/quoteDetailFragment"
         android:name="com.example.quotesapp.view.QuoteDetailFragment"
-        android:label="QuoteDetailFragment" />
+        android:label="QuoteDetailFragment" >
+        <action
+            android:id="@+id/action_quoteDetailFragment_to_quote_list_container"
+            app:destination="@id/quote_list_container" />
+        <argument
+            android:name="quoteDetail"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_quoteDetailFragment_to_searchableQuotesListFragment"
+            app:destination="@id/searchableQuotesListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchableQuotesListFragment"
         android:name="com.example.quotesapp.view.SearchableQuotesListFragment"
-        android:label="SearchableQuotesListFragment" />
+        android:label="SearchableQuotesListFragment" >
+        <action
+            android:id="@+id/action_searchableQuotesListFragment_to_quoteDetailFragment2"
+            app:destination="@id/quoteDetailFragment" />
+    </fragment>
     <activity
         android:id="@+id/loginActivity"
         android:name="com.example.quotesapp.view.Activities.LoginActivity"

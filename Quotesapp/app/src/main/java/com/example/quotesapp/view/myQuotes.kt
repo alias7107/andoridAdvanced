@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quotesapp.databinding.FragmentMyQuotesBinding
-import com.example.quotesapp.view.adapter.QuotesListAdapter
+import com.example.quotesapp.view.adapter.QuoteListAdapter.QuotesListAdapter
 import com.example.quotesapp.viewModel.QuotesListViewModel
 import kotlinx.android.synthetic.main.quotes_list_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel

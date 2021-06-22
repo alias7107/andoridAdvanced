@@ -1,33 +1,28 @@
 package com.example.quotesapp.view
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
+
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.koin.android.viewmodel.ext.android.viewModel
 import com.example.quotesapp.databinding.QuotesListFragmentBinding
-import com.example.quotesapp.view.adapter.QuotesListAdapter
+import com.example.quotesapp.view.adapter.QuoteListAdapter.QuotesListAdapter
 import com.example.quotesapp.viewModel.QuotesListViewModel
-import androidx.lifecycle.Observer
-import com.example.quotesapp.R
-import com.example.quotesapp.data.model.Item
-import com.example.quotesapp.data.model.Tags
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.quotes_list_fragment.*
-import java.util.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment(){
+class QuotesListFragment : Fragment(){
+    val arg: QuotesListFragmentArgs by navArgs()
     private lateinit var viewDataBinding: QuotesListFragmentBinding
     private lateinit var adapter: QuotesListAdapter
+
     private val QuotesListViewModel:QuotesListViewModel by viewModel()
+
 
 
     override fun onCreateView(
@@ -45,16 +40,22 @@ class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding.viewModel?.fetchQuotesList(selectedTag.name)
+//        viewDataBinding.viewModel?.fetchQuotesList(arg.selectedTag)
+        if(savedInstanceState==null){
+            viewDataBinding.viewModel?.fetchQuotesList(arg.selectedTag)
+        }
 
+        
         setupAdapter()
         setObservers()
 
     }
 
     private fun setObservers() {
-        viewDataBinding.viewModel?.fetchQuotesList(selectedTag.name)?.observe(viewLifecycleOwner, Observer {
+        viewDataBinding.viewModel?.getQuotesList()?.observe(viewLifecycleOwner, Observer {
             adapter.updateQuoteList(it)
+
+
 
 
         })
@@ -76,4 +77,6 @@ class QuotesListFragment constructor(private val selectedTag: Tags) : Fragment()
             quotes_list_rv.adapter = adapter
         }
     }
+
+
 }

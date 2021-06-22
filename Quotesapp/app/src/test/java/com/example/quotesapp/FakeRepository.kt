@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 
 import com.example.quotesapp.data.model.Item
 import com.example.quotesapp.data.model.Tags
-import com.example.quotesapp.domain.QuoteListRepository
-import com.example.quotesapp.domain.TagsListRepository
+import com.example.quotesapp.domain.Repository.QuoteListRepository
+import com.example.quotesapp.domain.Repository.TagsListRepository
 import retrofit2.Response
 
 class FakeRepository : TagsListRepository {

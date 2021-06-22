@@ -17,21 +17,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.navArgs
 import com.example.quotesapp.R
 import com.example.quotesapp.data.model.Item
 import com.squareup.picasso.Picasso
 import com.example.quotesapp.BR
 import com.example.quotesapp.databinding.FragmentDetailBinding
+import com.example.quotesapp.viewModel.QuoteDetailViewModel
 import com.example.quotesapp.viewModel.QuotesListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.tags_list_item.view.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
 
-class QuoteDetailFragment constructor(private val itemDetail: Item, private val QuotesListViewModel: QuotesListViewModel ): Fragment() {
+class QuoteDetailFragment: Fragment() {
     private lateinit var viewDataBinding: FragmentDetailBinding
-    private lateinit var prefLike: SharedPreferences
-
+    private lateinit var itemDetail: Item
+    private lateinit var ivLike:ImageView
+    private  val detailViewModel: QuoteDetailViewModel by viewModel()
+    val arg: QuoteDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,18 +47,29 @@ class QuoteDetailFragment constructor(private val itemDetail: Item, private val 
         savedInstanceState: Bundle?
 
     ): View {
-        viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
-        val view= viewDataBinding.root
+        viewDataBinding = FragmentDetailBinding.inflate(inflater, container, false).apply{
+            setLifecycleOwner (viewLifecycleOwner )
+        }
+        viewDataBinding.detailViewModel = detailViewModel
+        return viewDataBinding.root
+    }
+
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bindViews(view)
+        setObservers()
+    }
+
+    private fun bindViews(view: View){
         val prefs:SharedPreferences = activity?.getSharedPreferences("Theme", Context.MODE_PRIVATE)!!
         val ivTheme  = view.findViewById<ConstraintLayout>(R.id.quoteDetailFragment)
         val tvContent  = view.findViewById<TextView>(R.id.content)
         val tvLike  = view.findViewById<TextView>(R.id.favCount)
         val tvAuthor  = view.findViewById<TextView>(R.id.author)
-        val ivLike = view.findViewById<ImageView>(R.id.like)
+        ivLike = view.findViewById<ImageView>(R.id.like)
         val ivShare = view.findViewById<ImageView>(R.id.share)
-        var favCount:Int=itemDetail.favorites_count.toInt()
-        prefLike = context?.getSharedPreferences("Like", Context.MODE_PRIVATE)!!
-
         val image = prefs.getInt("selectedTheme", 0)
         val imageName = prefs.getString("themeName", null)
 
@@ -66,28 +85,43 @@ class QuoteDetailFragment constructor(private val itemDetail: Item, private val 
                 tvAuthor.setTextColor(resources.getColor(R.color.black))
 
             }
+
+
             ivLike.setOnClickListener {
-                QuotesListViewModel.favQuote(itemDetail.id)
-                ivLike.setBackgroundResource(R.drawable.ic_licked)
-                favCount = favCount + 1
-                tvLike.setText(favCount.toString())
-                val editor = prefLike.edit()
-                 editor.putBoolean(itemDetail.id.toString(), true)
-                editor.apply()
+                if (!itemDetail.user_details.favorite) {
+                    detailViewModel.favQuote(itemDetail.id).observe(viewLifecycleOwner,{result->
+                        tvLike.text = result.favorites_count
+                    })
+                    ivLike.setBackgroundResource(R.drawable.ic_licked)
+                    itemDetail.user_details.favorite = true
+
+                } else {
+                    detailViewModel.unfavQuote(itemDetail.id).observe(viewLifecycleOwner,{
+                        tvLike.text = it.favorites_count
+                    })
+                    itemDetail.user_details.favorite = false
+                    ivLike.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
+
+                }
             }
-
-            if(prefLike.getBoolean(itemDetail.id.toString(), false)){
-                ivLike.setBackgroundResource(R.drawable.ic_licked)
-
-            }
-
             ivShare.setOnClickListener {
                 share()
             }
         }
+    }
 
-        viewDataBinding.setVariable(BR.itemDetail, itemDetail)
-        return view
+
+
+    private fun setObservers(){
+        viewDataBinding.detailViewModel?.getQuote(arg.quoteDetail)?.observe(viewLifecycleOwner, {
+            itemDetail = it
+            if(itemDetail.user_details.favorite){
+                ivLike.setBackgroundResource(R.drawable.ic_licked)
+            }
+            viewDataBinding.setVariable(BR.itemDetail, itemDetail)
+
+        })
+
     }
 
 

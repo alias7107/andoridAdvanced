@@ -1,7 +1,6 @@
 package com.example.quotesapp.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
@@ -9,18 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quotesapp.R
-import com.example.quotesapp.data.model.Tags
-import com.example.quotesapp.databinding.QuotesListFragmentBinding
 import com.example.quotesapp.databinding.SearchableQuotesListFragmentBinding
-import com.example.quotesapp.view.adapter.QuotesListAdapter
+import com.example.quotesapp.view.adapter.QuoteListAdapter.SearchableQuotesListAdapter
 import com.example.quotesapp.viewModel.QuotesListViewModel
-import kotlinx.android.synthetic.main.quotes_list_fragment.*
 import kotlinx.android.synthetic.main.searchable_quotes_list_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class SearchableQuotesListFragment : Fragment(){
     private lateinit var viewDataBinding: SearchableQuotesListFragmentBinding
-    private lateinit var adapter: QuotesListAdapter
+    private lateinit var adapter: SearchableQuotesListAdapter
     private val QuotesListViewModel: QuotesListViewModel by viewModel()
     private lateinit var searchWord: String
 
@@ -64,7 +60,7 @@ class SearchableQuotesListFragment : Fragment(){
     private fun setupAdapter() {
         val viewModel = viewDataBinding.searchViewModel
         if (viewModel != null) {
-            adapter = QuotesListAdapter(viewDataBinding.searchViewModel!!, activity)
+            adapter = SearchableQuotesListAdapter(viewDataBinding.searchViewModel!!, activity)
             val layoutManager = LinearLayoutManager(activity)
             searchable_quotes_list_rv.layoutManager = layoutManager
             searchable_quotes_list_rv.addItemDecoration(

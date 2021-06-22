@@ -1,4 +1,4 @@
-package com.example.quotesapp.data.repository
+package com.example.quotesapp.data.repository.Base
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -17,11 +17,7 @@ import timber.log.Timber
 abstract class BaseDataStore(@PublishedApi internal val service: ApiService) {
 
     abstract fun loadData(selectedTag: String): LiveData<List<Item>>
-
     abstract fun searchedLoadData(searchWord: String): LiveData<List<Item>>
-    abstract fun favQuote(quote_id: Int): LiveData<List<Item>>
-    abstract fun unfavQuote(quote_id: Int): LiveData<List<Item>>
-
     abstract fun myQuotes(username: String): LiveData<List<Item>>
 
 

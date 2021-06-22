@@ -1,7 +1,6 @@
-package com.example.quotesapp.data.repository
+package com.example.quotesapp.data.repository.Base
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quotesapp.data.LocalDatabase.TagsDao
@@ -45,7 +44,8 @@ abstract class BaseTagDataStore(@PublishedApi internal val service: ApiService, 
                     if (data.isNotEmpty()) {
                         result.value = dao.getAll()
                     }
-                    Timber.d("Error: ${e.message()}")
+                    Timber.d("aa")
+//                    Timber.d("Error: ${e.message()}")
                 } catch (e: Throwable) {
                     val data = withContext(Dispatchers.IO) {
                         dao.getAll()
@@ -53,7 +53,8 @@ abstract class BaseTagDataStore(@PublishedApi internal val service: ApiService, 
                     if (data.isNotEmpty()) {
                         result.value = dao.getAll()
                     }
-                    Timber.d("Error: ${e.message}")
+                    Timber.d("aa")
+//                    Timber.d("Error: ${e.message}")
                 }
             }
         }

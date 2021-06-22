@@ -1,15 +1,9 @@
-package com.example.quotesapp.domain
+package com.example.quotesapp.domain.UseCase
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.quotesapp.R
-import com.example.quotesapp.data.api.ApiService
 import com.example.quotesapp.data.model.LoginData
 import com.example.quotesapp.data.model.LoginResponse
-import com.example.quotesapp.data.model.Tags
-import com.example.quotesapp.utils.Constants.Companion.DEFAULT_VALUE
+import com.example.quotesapp.domain.Repository.AccountRepository
 
 class LoginUseCase(val accountRepository: AccountRepository)
 {

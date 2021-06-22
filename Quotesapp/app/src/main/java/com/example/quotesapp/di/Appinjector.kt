@@ -2,11 +2,9 @@ package com.example.quotesapp.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.quotesapp.R
 import com.example.quotesapp.data.api.ApiClient
-import com.example.quotesapp.data.api.SessionManager.Companion.USER_TOKEN
-import com.example.quotesapp.data.repository.*
-import com.example.quotesapp.domain.*
+import com.example.quotesapp.data.repository.DataStore.*
+import com.example.quotesapp.domain.UseCase.*
 import com.example.quotesapp.viewModel.*
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -14,7 +12,7 @@ import org.koin.dsl.module
 
 
 val viewModeModule = module{
-    viewModel { QuotesListViewModel(get( ))
+    viewModel { QuotesListViewModel(get( ), get())
 
     }
     viewModel { UserProfileViewModel(get( ))
@@ -23,7 +21,8 @@ val viewModeModule = module{
     viewModel { PostQuoteViewModel(get( ))
 
     }
-    viewModel { TagsListViewModel(get<GetTagsListUseCase>()) }
+    viewModel { TagsListViewModel(get()) }
+    viewModel { QuoteDetailViewModel(get()) }
 
 
 }
@@ -45,6 +44,7 @@ val useCaseModule = module{
 
     }
     single { GetTagsListUseCase(get<TagsListDataStore>()) }
+    single { GetQuoteUseCase(get<QuoteDataStore>()) }
 
 }
 
@@ -64,6 +64,7 @@ val repositoryModule = module{
     single { PostQuoteDataStore(get())
     }
     single { TagsListDataStore(get(), androidApplication()) }
+    single { QuoteDataStore(get()) }
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.quotesapp.data.repository
+package com.example.quotesapp.data.repository.Base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

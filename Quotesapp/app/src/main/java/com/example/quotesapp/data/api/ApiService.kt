@@ -15,6 +15,7 @@ interface ApiService {
 
     @GET("quotes/")
     fun getSearchableQuotesList(@Query("filter") filter: String): Deferred<Response<QuoteResponse>>
+
     @GET("quotes/")
     fun getMyquotes(@Query("filter") filter: String, @Query("type") type: String): Deferred<Response<QuoteResponse>>
 
@@ -33,8 +34,13 @@ interface ApiService {
     fun getUserProfile(@Query("login") login: String): Deferred<Response<UserProfile>>
 
     @PUT("quotes/{quote_id}/fav")
-    fun favQuote(@Path("quote_id") quote_id: Int): Deferred<Response<QuoteResponse>>
+    fun favQuote(@Path("quote_id") quote_id: Int): Deferred<Response<Item>>
+
+    @GET("quotes/{quote_id}")
+    fun GetQuote(@Path("quote_id") quote_id: Int): Deferred<Response<Item>>
+
+
     @PUT("quotes/{quote_id}/unfav")
-    fun unfavQuote(@Path("quote_id") quote_id: Int): Deferred<Response<QuoteResponse>>
+    fun unfavQuote(@Path("quote_id") quote_id: Int): Deferred<Response<Item>>
 
 }

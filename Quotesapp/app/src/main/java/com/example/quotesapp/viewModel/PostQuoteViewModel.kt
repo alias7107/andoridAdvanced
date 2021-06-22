@@ -1,12 +1,9 @@
 package com.example.quotesapp.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quotesapp.data.model.*
-import com.example.quotesapp.domain.LoginUseCase
-import com.example.quotesapp.domain.PostQuoteUseCase
+import com.example.quotesapp.domain.UseCase.PostQuoteUseCase
 
 class PostQuoteViewModel(val postQuoteUseCase: PostQuoteUseCase): ViewModel() {
 

@@ -3,6 +3,8 @@ package com.example.quotesapp.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quotesapp.R
 import com.example.quotesapp.data.model.Tags
@@ -14,7 +16,8 @@ import kotlinx.android.synthetic.main.tags_list_item.view.*
 import java.util.*
 
 
-class TagsListAdapter (private val TagsListViewModel: TagsListViewModel,
+class TagsListAdapter internal constructor(
+    private val TagsListViewModel: TagsListViewModel,
                        private val activity: FragmentActivity?) :
     RecyclerView.Adapter<TagsListViewHolder>() {
     var tagsList: List<Tags> = emptyList()
@@ -23,7 +26,8 @@ class TagsListAdapter (private val TagsListViewModel: TagsListViewModel,
         val inflater = LayoutInflater.from(parent.context)
         val dataBinding = TagsListItemBinding.inflate(inflater, parent, false)
         val context = parent.context
-        return TagsListViewHolder(dataBinding, TagsListViewModel, activity)
+//        return TagsListViewHolder(dataBinding,  activity, TagsListViewModel)
+        return TagsListViewHolder(dataBinding,  activity)
     }
 
     override fun getItemCount(): Int {
@@ -78,10 +82,16 @@ class TagsListAdapter (private val TagsListViewModel: TagsListViewModel,
             Picasso.get().load(images[rand.nextInt(images.size)]).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
         }
 
+
+
+
+
     }
 
     fun updateTagsList(tagsList: List<Tags>) {
         this.tagsList = tagsList
         notifyDataSetChanged()
     }
+
+
 }

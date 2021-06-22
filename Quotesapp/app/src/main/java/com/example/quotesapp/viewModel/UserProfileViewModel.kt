@@ -1,14 +1,9 @@
 package com.example.quotesapp.viewModel
 
-import android.content.SharedPreferences
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.quotesapp.data.model.Tags
 import com.example.quotesapp.data.model.UserProfile
-import com.example.quotesapp.domain.GetTagsListUseCase
-import com.example.quotesapp.domain.GetUserProfileUseCase
+import com.example.quotesapp.domain.UseCase.GetUserProfileUseCase
 
 class UserProfileViewModel(val userProfileUseCase: GetUserProfileUseCase): ViewModel() {
 

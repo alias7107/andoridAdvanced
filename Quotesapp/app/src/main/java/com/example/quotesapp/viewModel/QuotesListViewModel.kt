@@ -1,29 +1,38 @@
 package com.example.quotesapp.viewModel
 
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.quotesapp.data.api.SessionManager
-import com.example.quotesapp.data.api.SessionManager.Companion.USER_TOKEN
+import androidx.lifecycle.MutableLiveData
 import com.example.quotesapp.data.model.Item
-import com.example.quotesapp.domain.GetQuoteListUseCase
+import com.example.quotesapp.domain.UseCase.GetQuoteListUseCase
+import com.example.quotesapp.domain.UseCase.GetQuoteUseCase
 
-class QuotesListViewModel(val getQuoteListUseCase: GetQuoteListUseCase): BaseViewModel() {
+class QuotesListViewModel(val getQuoteListUseCase: GetQuoteListUseCase, val getQuoteUseCase: GetQuoteUseCase): BaseViewModel() {
     private lateinit var sharedPreferences: SharedPreferences
-    fun fetchQuotesList(selectedTag: String): LiveData<List<Item>> {
-        return getQuoteListUseCase.getQuoteList(selectedTag)
+    private var quotesList = MutableLiveData<List<Item>>()
+//    private var tagsList = MutableLiveData<List<Tags>>()
+//    private var tagsList = MutableLiveData<List<Tags>>()
+
+    fun fetchQuotesList(selectedTag: String) {
+        quotesList =  getQuoteListUseCase.getQuoteList(selectedTag) as MutableLiveData<List<Item>>
+    }
+
+    fun getQuotesList(): LiveData<List<Item>> {
+        return quotesList
     }
 
     fun fetchSearchableQuotesList(searchWord: String): LiveData<List<Item>> {
         return getQuoteListUseCase.getSearchableQuoteList(searchWord)
     }
 
-    fun favQuote(quote_id: Int): LiveData<List<Item>>{
-        return getQuoteListUseCase.favQuote(quote_id)
+    fun favQuote(quote_id: Int): LiveData<Item>{
+        return getQuoteUseCase.favQuote(quote_id)
     }
-    fun unfavQuote(quote_id: Int): LiveData<List<Item>>{
-        return getQuoteListUseCase.unfavQuote(quote_id)
+    fun unfavQuote(quote_id: Int): LiveData<Item>{
+        return getQuoteUseCase.unfavQuote(quote_id)
     }
+
+
 
     fun myQuotes(username: String): LiveData<List<Item>>{
         return getQuoteListUseCase.myQuotes(username)

@@ -1,9 +1,8 @@
 package com.example.quotesapp.viewModel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.quotesapp.data.model.*
-import com.example.quotesapp.domain.LoginUseCase
+import com.example.quotesapp.domain.UseCase.LoginUseCase
 
 open class SignInViewModel(val loginUseCase: LoginUseCase): ViewModel() {
 
