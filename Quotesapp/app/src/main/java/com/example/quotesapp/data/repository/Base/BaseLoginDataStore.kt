@@ -2,9 +2,11 @@ package com.example.quotesapp.data.repository.Base
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.quotesapp.data.api.ApiService
+import com.example.quotesapp.data.api.SessionManager
 import com.example.quotesapp.data.model.*
 import kotlinx.coroutines.*
 import retrofit2.HttpException
@@ -16,36 +18,24 @@ abstract class BaseLoginDataStore(@PublishedApi internal val service: ApiService
 
 
     inline fun authenticate(crossinline call: (ApiService) -> Deferred<Response<LoginResponse>>): LiveData<LoginResponse> {
-        lateinit var pref: SharedPreferences
-        pref = context.getSharedPreferences("Login", Context.MODE_PRIVATE)!!
-        val editor = pref.edit()
-
-
-
+        lateinit var sessionManager: SessionManager
         val result = MutableLiveData<LoginResponse>()
 
         CoroutineScope(Dispatchers.IO).launch {
             val request = call(service)
             withContext(Dispatchers.Main) {
-
                 try {
                     val response = request.await()
-
-
                     if (response.isSuccessful) {
-
+                        sessionManager = SessionManager(context)
+                        sessionManager.saveLoginData(response.body()!!)
                         result.value = response.body()
-                        editor.putString("sessionId", response.body()?.user_token)
-                        editor.putString("email", response.body()?.email)
-
-                        editor.putString("username", response.body()?.login)
-                        editor.apply()
-//                        sessionManager.saveAuthToken(response.body()!!.user_token.toString())
 
                     } else {
                         result.value?.message = response.body()?.message.toString()
                         Timber.d("Error occurred with code ${response.code()}")
                     }
+
                 } catch (e: HttpException) {
                     result.value?.message = e.message
                     Timber.d("Error: ${e.message()}")

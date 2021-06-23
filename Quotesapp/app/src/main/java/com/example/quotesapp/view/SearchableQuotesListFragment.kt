@@ -37,24 +37,18 @@ class SearchableQuotesListFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViewModel()
-
-
     }
 
     private fun setUpViewModel() {
         viewDataBinding.searchViewModel?.fetchSearchableQuotesList(searchWord)
         setupAdapter()
         setObservers()
-
     }
 
     private fun setObservers() {
         viewDataBinding.searchViewModel?.fetchSearchableQuotesList(searchWord)?.observe(viewLifecycleOwner, Observer {
             adapter.updateQuoteList(it)
-
-
         })
-
     }
 
     private fun setupAdapter() {

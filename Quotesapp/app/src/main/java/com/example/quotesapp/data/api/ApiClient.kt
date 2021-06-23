@@ -1,13 +1,7 @@
 package com.example.quotesapp.data.api
 
-
-import android.content.SharedPreferences
-import com.example.quotesapp.data.api.SessionManager.Companion.USER_TOKEN
-import com.example.quotesapp.data.model.LoginResponse
 import com.example.quotesapp.utils.Constants.Companion.BASE_URL
-import com.example.quotesapp.utils.Constants.Companion.DEBUG
-import com.example.quotesapp.utils.Constants.Companion.REQUEST_TIMEOUT_DURATION
-import com.google.gson.GsonBuilder
+import com.example.quotesapp.utils.Constants.Companion.QUOTES_API_KEY
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -42,24 +36,14 @@ object ApiClient {
             .build()
     }
 
-    fun getAuthInterceptor(sharedPreferences: SharedPreferences): Interceptor {
-//        val sessionManager = SessionManager(Context)
+    fun getAuthInterceptor(sessionManager: SessionManager): Interceptor {
         return Interceptor { chain ->
             val newRequest = chain.request()
                 .newBuilder().also{
-                    it.addHeader("Authorization", "Token token=597b3b8ec128096c2fe0e32a65acb4e7")
-//                    val sessionID = sharedPreferences.getString("sessionId", null)?.let{sharedPreferences.getString("sessionId", null)}!!
-//                    it.addHeader( "User-Token", sessionID)
-//                   {newRequest.header("User-Token", sharedPreferences.getString("sessionId", null))}
+                    it.addHeader("Authorization", QUOTES_API_KEY)
                 }
-//                .addHeader("User-Token", "AuKW/fCl+0yqXlfj/aT8mSKvo0eVNQnP+d6F89mn1AN8nYFDnzwHiaSDULeZSyTiqAc3oF87J7q+HJlzhk3eYA==")
-//                .addHeader("User-Token", sharedPreferences.getString("sessionId", null))
 
-
-//            sessionManager.fetchAuthToken()?.let{
-//                newRequest.addHeader("User-Token", it)
-//            }
-            sharedPreferences.getString("sessionId", null)?.let{newRequest.header("User-Token", sharedPreferences.getString("sessionId", null))}
+            sessionManager.fetchSessionId()?.let{result-> newRequest.header("User-Token", result)}
             chain.proceed(newRequest.build())
         }
     }

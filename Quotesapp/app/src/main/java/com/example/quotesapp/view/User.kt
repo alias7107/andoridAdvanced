@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.quotesapp.R
+import com.example.quotesapp.data.api.SessionManager
 import com.example.quotesapp.databinding.FragmentUserBinding
 import com.example.quotesapp.view.Activities.LoginActivity
 import com.example.quotesapp.viewModel.UserProfileViewModel
@@ -26,7 +27,7 @@ class User : Fragment() {
     private lateinit var logout: Button
     private val userprofile: UserProfileViewModel by viewModel()
     private lateinit var viewDataBinding: FragmentUserBinding
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sessionManager: SessionManager
     private lateinit var prefLike: SharedPreferences
 
     override fun onCreateView(
@@ -35,8 +36,6 @@ class User : Fragment() {
     ): View? {
         val v: View = LayoutInflater.from(container?.context)
             .inflate(R.layout.fragment_user, container, false)
-        // Inflate the layout for this fragment
-
         return v
     }
 
@@ -55,9 +54,9 @@ class User : Fragment() {
     private fun bindViews(view: View) = with(view){
         username = view.findViewById(R.id.tv_name)
         email = view.findViewById(R.id.tv_address)
-        sharedPreferences = context.getSharedPreferences("Login", Context.MODE_PRIVATE)!!
-        username.text = sharedPreferences.getString("username", null)!!
-        email.text = sharedPreferences.getString("email", null)!!
+        sessionManager = SessionManager(context)
+        username.text = sessionManager.fetchUsername()
+        email.text = sessionManager.fetchEmail()
         post = view.findViewById(R.id.makeQuote)
         val fragment = PostQuote()
         post.setOnClickListener {
@@ -76,7 +75,7 @@ class User : Fragment() {
 
         logout = view.findViewById(R.id.logout)
         logout.setOnClickListener {
-            sharedPreferences.edit().clear().commit()
+            sessionManager.deleteSession()
             prefLike = activity?.getSharedPreferences("Like", Context.MODE_PRIVATE)!!
             prefLike.edit().clear().commit()
 

@@ -24,8 +24,6 @@ class myQuotes : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var username: String
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -49,8 +49,6 @@ class TagsListFragment: Fragment(){
             shimmerLayout.visibility = View.GONE })
     }
 
-
-
     private fun setupAdapter() {
         val viewModel = viewDataBinding.tagsViewModel
         if (viewModel != null) {
@@ -64,9 +62,7 @@ class TagsListFragment: Fragment(){
                 )
             )
             tags_list_rv.adapter = adapter
-
         }
-//        view?.findNavController()?.navigate(TagsListFragmentDirections)
         tags_list_rv.setHasFixedSize(true)
         tags_list_rv.setItemViewCacheSize(20)
     }

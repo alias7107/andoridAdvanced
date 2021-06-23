@@ -25,19 +25,11 @@ class TagsListAdapter internal constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagsListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val dataBinding = TagsListItemBinding.inflate(inflater, parent, false)
-        val context = parent.context
-//        return TagsListViewHolder(dataBinding,  activity, TagsListViewModel)
         return TagsListViewHolder(dataBinding,  activity)
     }
 
     override fun getItemCount(): Int {
         return tagsList.size
-//        if (tagsList.size > 25){
-//            return 25
-//        }
-//        else {
-//            return tagsList.size
-//        }
     }
 
     override fun onBindViewHolder(holder: TagsListViewHolder, position: Int) {
@@ -81,17 +73,10 @@ class TagsListAdapter internal constructor(
             val rand = Random()
             Picasso.get().load(images[rand.nextInt(images.size)]).fit().centerCrop().placeholder(R.drawable.kolsai).into(holder.itemView.ivTag)
         }
-
-
-
-
-
     }
 
     fun updateTagsList(tagsList: List<Tags>) {
         this.tagsList = tagsList
         notifyDataSetChanged()
     }
-
-
 }

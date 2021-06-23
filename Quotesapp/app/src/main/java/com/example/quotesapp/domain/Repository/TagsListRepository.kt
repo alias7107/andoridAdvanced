@@ -6,5 +6,4 @@ import com.example.quotesapp.data.model.Tags
 
 interface TagsListRepository {
     fun TagsData(): LiveData<List<Tags>>
-
 }

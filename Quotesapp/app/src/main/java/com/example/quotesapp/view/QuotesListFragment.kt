@@ -20,10 +20,7 @@ class QuotesListFragment : Fragment(){
     val arg: QuotesListFragmentArgs by navArgs()
     private lateinit var viewDataBinding: QuotesListFragmentBinding
     private lateinit var adapter: QuotesListAdapter
-
     private val QuotesListViewModel:QuotesListViewModel by viewModel()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,26 +37,17 @@ class QuotesListFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewDataBinding.viewModel?.fetchQuotesList(arg.selectedTag)
         if(savedInstanceState==null){
             viewDataBinding.viewModel?.fetchQuotesList(arg.selectedTag)
         }
-
-        
         setupAdapter()
         setObservers()
-
     }
 
     private fun setObservers() {
         viewDataBinding.viewModel?.getQuotesList()?.observe(viewLifecycleOwner, Observer {
             adapter.updateQuoteList(it)
-
-
-
-
         })
-
     }
 
     private fun setupAdapter() {
@@ -77,6 +65,4 @@ class QuotesListFragment : Fragment(){
             quotes_list_rv.adapter = adapter
         }
     }
-
-
 }

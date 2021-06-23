@@ -12,9 +12,7 @@ import retrofit2.Response
 import timber.log.Timber
 
 abstract class BasePostQuote (@PublishedApi internal val service: ApiService) {
-
     abstract fun postQuote(quote: Quote): LiveData<Quote>
-
 
     inline fun postData(crossinline call: (ApiService) -> Deferred<Response<Quote>>): LiveData<Quote> {
         val result = MutableLiveData<Quote>()

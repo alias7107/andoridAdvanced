@@ -23,14 +23,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.quotes_list_item.view.*
 
 abstract class BaseViewHolder constructor(
-      val dataBinding: ViewDataBinding,
+     val dataBinding: ViewDataBinding,
      private val quotesListViewModel: QuotesListViewModel,
      val activity: FragmentActivity?
 ) : RecyclerView.ViewHolder(dataBinding.root) {
     fun setup(itemData: Item){
         dataBinding.setVariable(BR.itemData, itemData)
         dataBinding.executePendingBindings()
-
         val ivLike = itemView.findViewById<ImageView>(R.id.iv_like)
         val tvLike  = itemView.findViewById<TextView>(R.id.tv_like)
         itemView.setOnClickListener{
@@ -42,7 +41,6 @@ abstract class BaseViewHolder constructor(
             ivLike.setImageResource(R.drawable.ic_baseline_favorite_border_24)
 
         }
-
 
         itemView.iv_like.setOnClickListener {
             if(!itemData.user_details.favorite){

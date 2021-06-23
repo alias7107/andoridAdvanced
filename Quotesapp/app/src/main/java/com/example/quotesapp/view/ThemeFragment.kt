@@ -36,20 +36,14 @@ class ThemeFragment: Fragment(), ThemeAdapter.ItemClickListener {
         return inflater.inflate(R.layout.fragment_theme, container, false)
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         bindViews(view)
         initAdapter()
         totalThemes.text = "Available Themes count:" +" " + availableThemes(newsGenerator()).availableThemeCount.toString()
-
-
     }
 
     private fun initAdapter() {
-
         recyclerView.layoutManager = GridLayoutManager(context,2 )
         themeAdapter =
             this.context.let {
@@ -69,13 +63,7 @@ class ThemeFragment: Fragment(), ThemeAdapter.ItemClickListener {
         recyclerView = findViewById(R.id.theme_list_rv)
     }
 
-
-
-
     override fun itemClick(position: Int, item: Theme) {
-//        Log.d(item?.themeImage.toString(), "onCLickAction")
-//        Toast.makeText(activity, "Theme was changed!", Toast.LENGTH_SHORT)
-
         prefs = context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)!!
         val editor = prefs.edit()
         item.themeImage.let { editor.putInt("selectedTheme", it)

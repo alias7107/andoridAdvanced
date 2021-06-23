@@ -17,7 +17,6 @@ class QuotesListViewHodler constructor(
 ) : BaseViewHolder(dataBinding, quotesListViewModel, activity) {
 
     override fun navigate(view: View, itemData:Item) {
-
             view.findNavController().navigate(QuotesListFragmentDirections.actionQuotesListFragmentToQuoteDetailFragment(itemData.id))
     }
 

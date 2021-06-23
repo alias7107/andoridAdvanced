@@ -18,7 +18,6 @@ class ThemeAdapter(
     private val listener: ItemClickListener?
     private var selectedItem = 0
 
-
     init {
         Theme.themeList = feedArrayList
         themeList = feedArrayList
@@ -44,10 +43,6 @@ class ThemeAdapter(
         if(selectedItem==position){
             holder.choosen.visibility = View.VISIBLE
         }
-
-
-
-
     }
 
     override fun getItemCount(): Int {

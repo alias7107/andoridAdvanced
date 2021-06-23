@@ -7,8 +7,6 @@ import com.example.quotesapp.data.repository.Base.BaseDataStore
 import com.example.quotesapp.domain.Repository.QuoteListRepository
 
 class QuoteListDataStore(apiService: ApiService): QuoteListRepository, BaseDataStore(apiService) {
-
-
     override fun loadData(selectedTag: String): LiveData<List<Item>> {
         return fetchData { service.getQuotesList(selectedTag, "tags") }
     }
@@ -16,8 +14,6 @@ class QuoteListDataStore(apiService: ApiService): QuoteListRepository, BaseDataS
     override fun searchedLoadData(searchWord: String): LiveData<List<Item>> {
         return fetchData { service.getSearchableQuotesList(searchWord) }
     }
-
-
 
     override fun myQuotes(username: String): LiveData<List<Item>> {
         return fetchData { service.getMyquotes(username,"user") }

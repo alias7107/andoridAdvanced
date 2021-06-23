@@ -44,8 +44,7 @@ abstract class BaseTagDataStore(@PublishedApi internal val service: ApiService, 
                     if (data.isNotEmpty()) {
                         result.value = dao.getAll()
                     }
-                    Timber.d("aa")
-//                    Timber.d("Error: ${e.message()}")
+                    Timber.d("Error: ${e.message()}")
                 } catch (e: Throwable) {
                     val data = withContext(Dispatchers.IO) {
                         dao.getAll()
@@ -53,8 +52,7 @@ abstract class BaseTagDataStore(@PublishedApi internal val service: ApiService, 
                     if (data.isNotEmpty()) {
                         result.value = dao.getAll()
                     }
-                    Timber.d("aa")
-//                    Timber.d("Error: ${e.message}")
+                    Timber.d("Error: ${e.message}")
                 }
             }
         }

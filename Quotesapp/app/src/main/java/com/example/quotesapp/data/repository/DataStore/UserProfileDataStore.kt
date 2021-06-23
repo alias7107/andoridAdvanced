@@ -10,5 +10,4 @@ class UserProfileDataStore (apiService: ApiService): UserProfileRepository, Base
     override fun loadUser(): LiveData<UserProfile> {
         return fetchUser { service.getUserProfile("ashkeyevli") }
     }
-
 }

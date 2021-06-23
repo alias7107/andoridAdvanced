@@ -43,7 +43,4 @@ abstract class BaseDataStore(@PublishedApi internal val service: ApiService) {
 
         return result
     }
-
-
-
 }

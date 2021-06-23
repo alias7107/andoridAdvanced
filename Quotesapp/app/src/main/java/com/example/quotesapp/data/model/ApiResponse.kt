@@ -4,6 +4,22 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+data class TypeHeadResponse (
+    val tags: List<Tags>
+)
+@Entity(tableName = "Tags_table")
+data class Tags(
+    var id: Int,
+    @ColumnInfo(name = "count")
+    var count: Int,
+
+    @ColumnInfo(name = "permalink")
+    @PrimaryKey
+    var permalink: String,
+    @ColumnInfo(name = "name")
+    var name: String
+)
+
 data class QuoteResponse (
     val quotes: List<Item>
 )
@@ -28,24 +44,6 @@ data class UserDetails(
     var downvote: Boolean,
     var hidden: Boolean,
 )
-
-data class TypeHeadResponse (
-    val tags: List<Tags>
-)
-@Entity(tableName = "Tags_table")
-data class Tags(
-    var id: Int,
-    @ColumnInfo(name = "count")
-    var count: Int,
-
-    @ColumnInfo(name = "permalink")
-    @PrimaryKey
-    var permalink: String,
-    @ColumnInfo(name = "name")
-    var name: String
-)
-
-
 
 data class Quote(
     var quote: QuoteItem

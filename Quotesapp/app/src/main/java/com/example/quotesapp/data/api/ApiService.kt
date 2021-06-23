@@ -7,9 +7,17 @@ import com.example.quotesapp.data.model.*
 import retrofit2.http.*
 
 interface ApiService {
-//    @Headers(
-//        "Content-Type: application/json",
-//        "Authorization: Token token=3076049eda9ba452981badda30fe2d47")
+    @POST("session/")
+    fun validateWithLogin(
+        @Body data: LoginData
+    ):Deferred<Response<LoginResponse>>
+
+    @GET("users")
+    fun getUserProfile(@Query("login") login: String): Deferred<Response<UserProfile>>
+
+    @GET("typeahead/")
+    fun getTagsList(): Deferred<Response<TypeHeadResponse>>
+
     @GET("quotes/")
     fun getQuotesList(@Query("filter") filter: String, @Query("type") type: String): Deferred<Response<QuoteResponse>>
 
@@ -22,23 +30,11 @@ interface ApiService {
     @POST("quotes/")
     fun postUserQuote(@Body quote: Quote): Deferred<Response<Quote>>
 
-    @GET("typeahead/")
-    fun getTagsList(): Deferred<Response<TypeHeadResponse>>
-
-    @POST("session/")
-    fun validateWithLogin(
-        @Body data: LoginData
-    ):Deferred<Response<LoginResponse>>
-
-    @GET("users")
-    fun getUserProfile(@Query("login") login: String): Deferred<Response<UserProfile>>
-
-    @PUT("quotes/{quote_id}/fav")
-    fun favQuote(@Path("quote_id") quote_id: Int): Deferred<Response<Item>>
-
     @GET("quotes/{quote_id}")
     fun GetQuote(@Path("quote_id") quote_id: Int): Deferred<Response<Item>>
 
+    @PUT("quotes/{quote_id}/fav")
+    fun favQuote(@Path("quote_id") quote_id: Int): Deferred<Response<Item>>
 
     @PUT("quotes/{quote_id}/unfav")
     fun unfavQuote(@Path("quote_id") quote_id: Int): Deferred<Response<Item>>

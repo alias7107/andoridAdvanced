@@ -11,5 +11,4 @@ class TagsListDataStore(apiService: ApiService, context: Context): TagsListRepos
       override fun TagsData(): LiveData<List<Tags>> {
         return fetchTags { service.getTagsList() }
     }
-
 }

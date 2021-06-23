@@ -7,7 +7,5 @@ import com.example.quotesapp.data.model.LoginResponse
 
 
 interface AccountRepository {
-
    fun validateWithLogin(data: LoginData): LiveData<LoginResponse>
-
 }

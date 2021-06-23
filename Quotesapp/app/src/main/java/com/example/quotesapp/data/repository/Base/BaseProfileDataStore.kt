@@ -12,9 +12,7 @@ import retrofit2.Response
 import timber.log.Timber
 
 abstract class BaseProfileDataStore(@PublishedApi internal val service: ApiService) {
-
     abstract fun loadUser(): LiveData<UserProfile>
-
 
     inline fun fetchUser(crossinline call: (ApiService) -> Deferred<Response<UserProfile>>): LiveData<UserProfile> {
         val result = MutableLiveData<UserProfile>()
@@ -35,7 +33,6 @@ abstract class BaseProfileDataStore(@PublishedApi internal val service: ApiServi
                 }
             }
         }
-
         return result
     }
 }

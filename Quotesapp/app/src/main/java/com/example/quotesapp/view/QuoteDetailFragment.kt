@@ -54,8 +54,6 @@ class QuoteDetailFragment: Fragment() {
         return viewDataBinding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews(view)
@@ -86,7 +84,6 @@ class QuoteDetailFragment: Fragment() {
 
             }
 
-
             ivLike.setOnClickListener {
                 if (!itemDetail.user_details.favorite) {
                     detailViewModel.favQuote(itemDetail.id).observe(viewLifecycleOwner,{result->
@@ -101,7 +98,6 @@ class QuoteDetailFragment: Fragment() {
                     })
                     itemDetail.user_details.favorite = false
                     ivLike.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
-
                 }
             }
             ivShare.setOnClickListener {
@@ -109,8 +105,6 @@ class QuoteDetailFragment: Fragment() {
             }
         }
     }
-
-
 
     private fun setObservers(){
         viewDataBinding.detailViewModel?.getQuote(arg.quoteDetail)?.observe(viewLifecycleOwner, {
@@ -123,7 +117,6 @@ class QuoteDetailFragment: Fragment() {
         })
 
     }
-
 
     private fun share() {
         try {

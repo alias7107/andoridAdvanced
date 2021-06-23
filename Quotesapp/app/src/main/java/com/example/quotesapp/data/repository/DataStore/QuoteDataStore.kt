@@ -7,8 +7,6 @@ import com.example.quotesapp.data.repository.Base.BaseQuoteDataStore
 import com.example.quotesapp.domain.Repository.GetQuoteRepository
 
 class QuoteDataStore (apiService: ApiService): GetQuoteRepository, BaseQuoteDataStore(apiService) {
-
-
     override fun getQuoteById(quote_id: Int): LiveData<Item> {
         return fetchData { service.GetQuote(quote_id) }
     }

@@ -14,7 +14,6 @@ class GetQuoteListUseCase(val quoteListRepository: QuoteListRepository) {
         return quoteListRepository.searchedLoadData(searchWord)
     }
 
-
     fun myQuotes(username: String): LiveData<List<Item>>{
         return quoteListRepository.myQuotes(username)
     }
