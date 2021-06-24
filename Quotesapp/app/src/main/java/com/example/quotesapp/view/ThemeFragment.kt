@@ -68,20 +68,8 @@ class ThemeFragment: Fragment(), ThemeAdapter.ItemClickListener {
         val editor = prefs.edit()
         item.themeImage.let { editor.putInt("selectedTheme", it)
         editor.putString("themeName", item.name)}
+        editor.putInt("themePosition", position)
         editor.apply()
-//        selectedItemPos = position
-//        if(lastItemSelectedPos == -1)
-//            lastItemSelectedPos = selectedItemPos
-//        else {
-//            themeAdapter.notifyItemChanged(lastItemSelectedPos)
-//            lastItemSelectedPos = selectedItemPos
-//        }
-//        themeAdapter.notifyItemChanged(selectedItemPos)
-//
-////        themeAdapter.notifyDataSetChanged()
-
-
-
     }
 
     private fun newsGenerator(): MutableList<Theme> {

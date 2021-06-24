@@ -1,5 +1,7 @@
 package com.example.quotesapp.view.adapter
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,8 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quotesapp.R
 import com.example.quotesapp.data.model.Theme
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.tags_list_item.view.*
 
 class ThemeAdapter(
     feedArrayList: MutableList<Theme>,
@@ -17,6 +21,9 @@ class ThemeAdapter(
     var themeList: MutableList<Theme>
     private val listener: ItemClickListener?
     private var selectedItem = 0
+    private lateinit var prefs : SharedPreferences
+    private var chosenTheme = ""
+
 
     init {
         Theme.themeList = feedArrayList
@@ -25,23 +32,28 @@ class ThemeAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.theme_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.theme_item, parent, false)!!
+        prefs = parent.context?.getSharedPreferences("Theme", Context.MODE_PRIVATE)!!
+        selectedItem = prefs.getInt("themePosition", 0)
+
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val modelFeed = Theme.themeList[position]
-        holder.ivTheme.setImageResource(modelFeed.themeImage)
+        Picasso.get().load(modelFeed.themeImage).fit().centerCrop().into(holder.ivTheme)
         holder.itemView.setOnClickListener{
             listener?.  itemClick(position, modelFeed)
             val previousItem = selectedItem
             selectedItem = position
             notifyItemChanged(previousItem)
             notifyItemChanged(position)
-
         }
-        if(selectedItem==position){
+        if(selectedItem == position){
             holder.choosen.visibility = View.VISIBLE
+        }
+        else{
+            holder.choosen.visibility = View.INVISIBLE
         }
     }
 
